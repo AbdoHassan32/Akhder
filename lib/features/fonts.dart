@@ -1,0 +1,1 @@
+const kNotoSansArabicFont = 'Noto Sans Arabic';

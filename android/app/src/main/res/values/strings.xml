@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">akhder</string>
+    <string name="facebook_app_id">7202625003159776</string>
+    <string name="fb_login_protocol_scheme">fb7202625003159776</string>
+    <string name="facebook_client_token">e5cfec4e1da848cc327042b216ee00ac</string>
+</resources>

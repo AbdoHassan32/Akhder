@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1055739675659",
+    "project_id": "akhder-2e6f9",
+    "storage_bucket": "akhder-2e6f9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1055739675659:android:75282e812d3ea97469f30e",
+        "android_client_info": {
+          "package_name": "com.example.akhder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1055739675659-immn42l21kr02435eafko6tddntjmhi1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-G4IsNkVSmYHyCNE-NQ8bmohqvbVo6-Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1055739675659-immn42l21kr02435eafko6tddntjmhi1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
