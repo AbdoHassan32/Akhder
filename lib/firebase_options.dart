@@ -63,7 +63,9 @@ class DefaultFirebaseOptions {
     messagingSenderId: '1055739675659',
     projectId: 'akhder-2e6f9',
     storageBucket: 'akhder-2e6f9.appspot.com',
+    androidClientId: '1055739675659-0t5leo4e1back1ss47e42mnrdmqjhbdb.apps.googleusercontent.com',
     iosClientId: '1055739675659-va7bcbc6f40h7aubo72dva6e12gksjvr.apps.googleusercontent.com',
     iosBundleId: 'com.example.akhder',
   );
+
 }
