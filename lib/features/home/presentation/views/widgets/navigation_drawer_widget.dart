@@ -1,9 +1,11 @@
 import 'package:akhder/core/utils/app_router.dart';
 import 'package:akhder/palette.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../../core/utils/styles.dart';
 
@@ -24,13 +26,23 @@ class NavigationDrawerWidget extends StatelessWidget {
                   borderRadius: BorderRadius.circular(50),
                 ),
                 clipBehavior: Clip.antiAliasWithSaveLayer,
-                child: user?.photoURL == null
-                    ? Icon(
-                        Icons.person_sharp,
+                child: CachedNetworkImage(
+                        imageUrl: user!.photoURL!,
+                        fit: BoxFit.fill,
+                  progressIndicatorBuilder: (context, url, downloadProgress) =>
+                      CircularProgressIndicator(
+                        value: downloadProgress.progress,
                         color: kPrimaryColor,
-                        size: MediaQuery.of(context).size.height * 0.08,
-                      )
-                    : Image.network(user!.photoURL!, fit: BoxFit.fill)),
+                        strokeWidth: 2,
+                      ),
+                  errorWidget: (context , url , error){
+                    return Icon(
+                      Icons.person_sharp,
+                      color: kPrimaryColor,
+                      size: MediaQuery.of(context).size.height * 0.08,
+                    );
+                  },
+                      )),
             accountName: Text(
               user!.displayName!,
               style: Styles.textStyle20.copyWith(
@@ -54,7 +66,7 @@ class NavigationDrawerWidget extends StatelessWidget {
               'Detect Diseases',
             ),
             onTap: () {
-
+              GoRouter.of(context).push(AppRouter.kDiseaseDetectionView);
             },
             tileColor: kPrimaryColor,
             textColor: Colors.white,
@@ -113,7 +125,10 @@ class NavigationDrawerWidget extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.logout_outlined),
             title: const Text('Logout'),
-            onTap: () {
+            onTap: () async {
+              final SharedPreferences pref =
+                  await SharedPreferences.getInstance();
+              pref.setString('email', 'null');
               GoogleSignIn googleSignIn = GoogleSignIn();
               googleSignIn.disconnect();
               GoRouter.of(context).go(AppRouter.kLoginView);

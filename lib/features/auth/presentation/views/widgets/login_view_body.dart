@@ -127,7 +127,9 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                         CustomButtonWidget(
                             buttonColor: kPrimaryColor,
                             label: 'سجل',
-                            onPressed: () {}),
+                            onPressed: () {
+
+                            }),
                         const SizedBox(
                           height: 25,
                         ),
