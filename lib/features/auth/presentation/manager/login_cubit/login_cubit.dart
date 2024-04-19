@@ -45,7 +45,7 @@ class LoginCubit extends Cubit<LoginState> {
       userInfo = FirebaseAuth.instance.currentUser;
       final SharedPreferences pref =
       await SharedPreferences.getInstance();
-      pref.setString('email', userInfo!.email!);
+      pref.setBool('isLoggedIn', true);
       emit(LoginSuccess());
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
@@ -76,7 +76,7 @@ class LoginCubit extends Cubit<LoginState> {
       userInfo = FirebaseAuth.instance.currentUser;
       final SharedPreferences pref =
       await SharedPreferences.getInstance();
-      pref.setString('email', userInfo!.email!);
+      pref.setBool('isLoggedIn', true);
       emit(LoginSuccess());
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {

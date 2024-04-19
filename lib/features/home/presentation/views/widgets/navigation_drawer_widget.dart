@@ -26,25 +26,32 @@ class NavigationDrawerWidget extends StatelessWidget {
                   borderRadius: BorderRadius.circular(50),
                 ),
                 clipBehavior: Clip.antiAliasWithSaveLayer,
-                child: CachedNetworkImage(
+                child: user?.photoURL == null
+                    ? Icon(
+                        Icons.person_sharp,
+                        color: kPrimaryColor,
+                        size: MediaQuery.of(context).size.height * 0.08,
+                      )
+                    : CachedNetworkImage(
                         imageUrl: user!.photoURL!,
                         fit: BoxFit.fill,
-                  progressIndicatorBuilder: (context, url, downloadProgress) =>
-                      CircularProgressIndicator(
-                        value: downloadProgress.progress,
-                        color: kPrimaryColor,
-                        strokeWidth: 2,
-                      ),
-                  errorWidget: (context , url , error){
-                    return Icon(
-                      Icons.person_sharp,
-                      color: kPrimaryColor,
-                      size: MediaQuery.of(context).size.height * 0.08,
-                    );
-                  },
+                        progressIndicatorBuilder:
+                            (context, url, downloadProgress) =>
+                                CircularProgressIndicator(
+                          value: downloadProgress.progress,
+                          color: kPrimaryColor,
+                          strokeWidth: 2,
+                        ),
+                        errorWidget: (context, url, error) {
+                          return Icon(
+                            Icons.person_sharp,
+                            color: kPrimaryColor,
+                            size: MediaQuery.of(context).size.height * 0.08,
+                          );
+                        },
                       )),
             accountName: Text(
-              user!.displayName!,
+              user?.displayName ==null ? 'User' : user!.displayName!,
               style: Styles.textStyle20.copyWith(
                 color: Colors.black,
                 fontFamily: 'Arial',
@@ -128,7 +135,7 @@ class NavigationDrawerWidget extends StatelessWidget {
             onTap: () async {
               final SharedPreferences pref =
                   await SharedPreferences.getInstance();
-              pref.setString('email', 'null');
+              pref.setBool('isLoggedIn', false);
               GoogleSignIn googleSignIn = GoogleSignIn();
               googleSignIn.disconnect();
               GoRouter.of(context).go(AppRouter.kLoginView);

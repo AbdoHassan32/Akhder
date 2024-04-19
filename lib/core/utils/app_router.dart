@@ -43,7 +43,7 @@ abstract class AppRouter{
           builder: (context , state) => const ItemDetailsViewBody(),
       ),
       GoRoute(
-        path: kItemDetailsView,
+        path: kDiseaseDetectionView,
         builder: (context , state) => const DiseaseDetectionView(),
       ),
     ],

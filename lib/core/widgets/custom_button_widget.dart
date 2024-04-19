@@ -18,14 +18,15 @@ class CustomButtonWidget extends StatelessWidget {
       width: double.infinity,
 
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(18),
       ),
       clipBehavior: Clip.antiAliasWithSaveLayer,
-      child: ElevatedButton(
+      child: MaterialButton(
         onPressed: onPressed,
-        style: ElevatedButton.styleFrom(
-          backgroundColor: buttonColor,
-        ),
+        color: buttonColor,
+        //style: ElevatedButton.styleFrom(
+         // backgroundColor: buttonColor,
+        //),
         child: Text(
           label,
           style: Styles.textStyle18.copyWith(
