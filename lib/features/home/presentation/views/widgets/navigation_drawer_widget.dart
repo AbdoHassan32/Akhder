@@ -2,7 +2,6 @@ import 'package:akhder/core/utils/app_router.dart';
 import 'package:akhder/palette.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -14,7 +13,6 @@ class NavigationDrawerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
@@ -26,7 +24,13 @@ class NavigationDrawerWidget extends StatelessWidget {
                   borderRadius: BorderRadius.circular(50),
                 ),
                 clipBehavior: Clip.antiAliasWithSaveLayer,
-                child: Image.network(user!.photoURL!, fit: BoxFit.fill)),
+                child: user?.photoURL == null
+                    ? Icon(
+                        Icons.person_sharp,
+                        color: kPrimaryColor,
+                        size: MediaQuery.of(context).size.height * 0.08,
+                      )
+                    : Image.network(user!.photoURL!, fit: BoxFit.fill)),
             accountName: Text(
               user!.displayName!,
               style: Styles.textStyle20.copyWith(
@@ -35,7 +39,7 @@ class NavigationDrawerWidget extends StatelessWidget {
               ),
             ),
             accountEmail: Text(
-              user!.email!,
+              user?.email == null ? 'Email' : user!.email!,
               style: Styles.textStyle20.copyWith(
                 color: kGreyTextColor,
                 fontFamily: 'Arial',
@@ -43,30 +47,68 @@ class NavigationDrawerWidget extends StatelessWidget {
             ),
           ),
           ListTile(
-            leading: const Icon(Icons.account_circle_outlined),
-            title: const Text('Account'),
-            onTap: () {},
+            titleTextStyle: Styles.textStyle18
+                .copyWith(fontFamily: 'Arial', fontWeight: FontWeight.bold),
+            leading: const Icon(Icons.location_searching_rounded),
+            title: const Text(
+              'Detect Diseases',
+            ),
+            onTap: () {
+
+            },
+            tileColor: kPrimaryColor,
+            textColor: Colors.white,
+            iconColor: Colors.white,
+          ),
+          const Divider(
+            height: 0.5,
+            thickness: 0.5,
+            color: kSecondaryColor,
           ),
           ListTile(
-
-            leading: const Icon(Icons.message_outlined),
-            title: const Text('Messages'),
+            titleTextStyle: Styles.textStyle18
+                .copyWith(fontFamily: 'Arial', fontWeight: FontWeight.bold),
+            leading: const Icon(Icons.safety_check),
+            title: const Text('Check your plant'),
             onTap: () {},
+            tileColor: kPrimaryColor,
+            textColor: Colors.white,
+            iconColor: Colors.white,
+          ),
+          const Divider(
+            height: 0.5,
+            thickness: 0.5,
+            color: kSecondaryColor,
           ),
           ListTile(
             leading: const Icon(Icons.share_outlined),
             title: const Text('Share'),
             onTap: () {},
           ),
+          const Divider(
+            height: 0.5,
+            thickness: 0.5,
+            color: kSecondaryColor,
+          ),
           ListTile(
             leading: const Icon(Icons.notifications_none_outlined),
             title: const Text('Notifications'),
             onTap: () {},
           ),
+          const Divider(
+            height: 0.5,
+            thickness: 0.5,
+            color: kSecondaryColor,
+          ),
           ListTile(
             leading: const Icon(Icons.settings_outlined),
             title: const Text('Settings'),
             onTap: () {},
+          ),
+          const Divider(
+            height: 0.5,
+            thickness: 0.5,
+            color: kSecondaryColor,
           ),
           ListTile(
             leading: const Icon(Icons.logout_outlined),
