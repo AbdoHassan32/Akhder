@@ -1,5 +1,4 @@
 import 'package:akhder/features/home/presentation/views/widgets/item_details_view_body.dart';
-import 'package:akhder/palette.dart';
 import 'package:flutter/material.dart';
 
 class ItemDetailsView extends StatelessWidget {
@@ -8,8 +7,7 @@ class ItemDetailsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body:
-      ItemDetailsViewBody(),
+      body: SafeArea(child: ItemDetailsViewBody()),
 
     );
   }

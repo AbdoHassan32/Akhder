@@ -1,11 +1,9 @@
-import 'package:akhder/features/home/presentation/views/widgets/cart_view_body.dart';
+import 'package:akhder/features/Cart/presentation/views/widgets/cart_view_body.dart';
 import 'package:akhder/features/home/presentation/views/widgets/favorites_view_body.dart';
 import 'package:akhder/features/home/presentation/views/widgets/home_view_body.dart';
 import 'package:akhder/features/home/presentation/views/widgets/navigation_drawer_widget.dart';
 import 'package:akhder/palette.dart';
 import 'package:flutter/material.dart';
-
-import '../../../../core/utils/assets.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -25,6 +23,7 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       drawer: NavigationDrawerWidget(),
       bottomNavigationBar: SizedBox(
         height: 70,

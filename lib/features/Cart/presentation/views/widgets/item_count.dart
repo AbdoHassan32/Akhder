@@ -26,14 +26,10 @@ class _ItemCountState extends State<ItemCount> {
   Widget build(BuildContext context) {
     return Row(
       children: [
-
-           IconButton(
-              icon: Icon(Icons.remove),
-              onPressed: decrement,
-            ),
-
-
-
+        IconButton(
+          icon: const Icon(Icons.remove),
+          onPressed: decrement,
+        ),
         Container(
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(5),
@@ -45,7 +41,7 @@ class _ItemCountState extends State<ItemCount> {
           child: Center(
             child: Text(
               count.toString(),
-              style: TextStyle(fontSize: 15),
+              style: const TextStyle(fontSize: 15),
             ),
           ),
         ),

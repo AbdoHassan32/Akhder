@@ -47,9 +47,12 @@ class CustomItemWidget extends StatelessWidget {
                 fontWeight: FontWeight.w600,
               ),
             ),
-            const Text(
+             Text(
               '125 مللي',
-              style: Styles.textStyle14,
+              style: Styles.textStyle14.copyWith(
+                  color: kGreyTextColor,
+                  fontWeight: FontWeight.w500
+              ),
               textDirection: TextDirection.rtl,
             ),
             const Spacer(

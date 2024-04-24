@@ -2,8 +2,8 @@ import 'package:akhder/features/auth/presentation/views/login_view.dart';
 import 'package:akhder/features/auth/presentation/views/register_view.dart';
 import 'package:akhder/features/disease_detection/presentation/views/disease_detection_view.dart';
 import 'package:akhder/features/home/presentation/views/home_view.dart';
-import 'package:akhder/features/home/presentation/views/widgets/item_details_view_body.dart';
 import 'package:go_router/go_router.dart';
+import '../../features/home/presentation/views/item_details_view.dart';
 import '../../features/onboarding/presentation/views/onboarding_view.dart';
 import '../../features/splash/presentation/views/splash_view.dart';
 
@@ -40,7 +40,7 @@ abstract class AppRouter{
       ),
       GoRoute(
           path: kItemDetailsView,
-          builder: (context , state) => const ItemDetailsViewBody(),
+          builder: (context , state) => const ItemDetailsView(),
       ),
       GoRoute(
         path: kDiseaseDetectionView,
