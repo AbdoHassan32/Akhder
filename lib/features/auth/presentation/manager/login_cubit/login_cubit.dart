@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:meta/meta.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 part 'login_state.dart';
 
@@ -42,7 +43,9 @@ class LoginCubit extends Cubit<LoginState> {
       UserCredential user = await FirebaseAuth.instance
           .signInWithCredential(facebookAuthCredential);
       userInfo = FirebaseAuth.instance.currentUser;
-
+      final SharedPreferences pref =
+      await SharedPreferences.getInstance();
+      pref.setBool('isLoggedIn', true);
       emit(LoginSuccess());
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
@@ -71,6 +74,9 @@ class LoginCubit extends Cubit<LoginState> {
       );
       await FirebaseAuth.instance.signInWithCredential(credential);
       userInfo = FirebaseAuth.instance.currentUser;
+      final SharedPreferences pref =
+      await SharedPreferences.getInstance();
+      pref.setBool('isLoggedIn', true);
       emit(LoginSuccess());
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {

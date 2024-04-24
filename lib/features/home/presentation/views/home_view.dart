@@ -1,3 +1,5 @@
+import 'package:akhder/features/home/presentation/views/widgets/cart_view_body.dart';
+import 'package:akhder/features/home/presentation/views/widgets/favorites_view_body.dart';
 import 'package:akhder/features/home/presentation/views/widgets/home_view_body.dart';
 import 'package:akhder/features/home/presentation/views/widgets/navigation_drawer_widget.dart';
 import 'package:akhder/palette.dart';
@@ -5,23 +7,51 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/utils/assets.dart';
 
-class HomeView extends StatelessWidget {
+class HomeView extends StatefulWidget {
   const HomeView({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return  Scaffold(
-      drawer: NavigationDrawerWidget(),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home),label: 'home'),
-          BottomNavigationBarItem(icon: Icon(Icons.search),label : 'search'),
-          BottomNavigationBarItem(icon: Icon(Icons.favorite),label : 'favorite'),
+  State<HomeView> createState() => _HomeViewState();
+}
 
-        ],
-        selectedItemColor: kPrimaryColor,
+class _HomeViewState extends State<HomeView> {
+  int selectedItemIndex = 0;
+  List<Widget> body = const [
+    HomeViewBody(),
+    CartViewBody(),
+    FavoritesViewBody(),
+
+  ];
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      drawer: NavigationDrawerWidget(),
+      bottomNavigationBar: SizedBox(
+        height: 70,
+        child: BottomNavigationBar(
+          items: const [
+            BottomNavigationBarItem(icon: Icon(Icons.home_rounded), label: 'الصفحة الرئيسية'),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.shopping_cart_rounded), label: 'العربة'),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.favorite), label: 'المفضلة'),
+          ],
+          onTap: (index) {
+            selectedItemIndex = index;
+            setState(() {
+              if(selectedItemIndex==0){
+
+              }
+            });
+          },
+          selectedFontSize: 14,
+          elevation: 10,
+          iconSize: 25,
+          currentIndex: selectedItemIndex,
+          selectedItemColor: kPrimaryColor,
+        ),
       ),
-      body:const SafeArea(child: HomeViewBody()),
+      body: SafeArea(child: body[selectedItemIndex]),
     );
   }
 }

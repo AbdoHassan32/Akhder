@@ -25,12 +25,15 @@ class _SplashViewBodyState extends State<SplashViewBody> {
       const Duration(seconds: 3),
       () async {
         SharedPreferences prefs=await SharedPreferences.getInstance();
-        if(prefs.getBool('isFirstTime')==null)
+        if(prefs.getBool('isLoggedIn')== null  && prefs.getBool('isFirstTime')==null)
         {
           return GoRouter.of(context).go(AppRouter.kOnboardingView);
         }
-        else if (prefs.getBool('isFirstTime')==false){
+        else if (prefs.getBool('isLoggedIn')== false && prefs.getBool('isFirstTime')==false){
           return GoRouter.of(context).go(AppRouter.kLoginView);
+        }
+        else  {
+          return GoRouter.of(context).go(AppRouter.kHomeView);
         }
         },
     );

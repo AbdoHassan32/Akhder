@@ -1,7 +1,7 @@
 import 'dart:ui';
 
-import 'package:akhder/core/utils/assets.dart';
 import 'package:akhder/core/utils/styles.dart';
+import 'package:akhder/core/widgets/background_image_widget.dart';
 import 'package:akhder/core/widgets/custom_button_widget.dart';
 import 'package:akhder/core/widgets/custom_textfield_widget.dart';
 import 'package:akhder/palette.dart';
@@ -36,12 +36,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
     return Stack(
       alignment: Alignment.center,
       children: [
-        Image.asset(
-          AssetsData.blurredBackground,
-          fit: BoxFit.fill,
-          height: double.infinity,
-          width: double.infinity,
-        ),
+        const BackgroundImageWidget(),
         BlocConsumer<LoginCubit, LoginState>(
           listener: (context, state) {
             if (state is LoginLoading) {
@@ -92,6 +87,9 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                               if (value!.isEmpty) {
                                 return "Email is required";
                               }
+                              else{
+                                return '';
+                              }
                             },
                             isPassword: false,
                             hintText: 'بريدك الإلكتروني'),
@@ -108,6 +106,9 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                               return "Password is required";
                             } else if (value.length < 8) {
                               return "Password length must be 8 characters or more";
+                            }
+                            else{
+                              return '';
                             }
                           },
                           isPassword: true,
@@ -127,7 +128,9 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                         CustomButtonWidget(
                             buttonColor: kPrimaryColor,
                             label: 'سجل',
-                            onPressed: () {}),
+                            onPressed: () {
+
+                            }),
                         const SizedBox(
                           height: 25,
                         ),

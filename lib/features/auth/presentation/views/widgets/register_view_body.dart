@@ -1,12 +1,11 @@
+import 'package:akhder/core/widgets/background_image_widget.dart';
 import 'package:akhder/features/auth/presentation/views/widgets/login_view_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 import '../../../../../core/utils/app_router.dart';
-import '../../../../../core/utils/assets.dart';
 import '../../../../../core/utils/styles.dart';
 import '../../../../../core/widgets/custom_button_widget.dart';
 import '../../../../../core/widgets/custom_textfield_widget.dart';
@@ -34,12 +33,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
     return Stack(
       alignment: Alignment.center,
       children: [
-        Image.asset(
-          AssetsData.blurredBackground,
-          fit: BoxFit.fill,
-          height: double.infinity,
-          width: double.infinity,
-        ),
+        const BackgroundImageWidget(),
         BlocConsumer<LoginCubit, LoginState>(
           listener: (context, state) {
             if (state is LoginLoading) {
@@ -92,6 +86,9 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                               if (value!.isEmpty) {
                                 return "username is required";
                               }
+                              else{
+                                return '';
+                              }
                             },
                             isPassword: false,
                             hintText: 'اسم المستخدم'),
@@ -106,6 +103,9 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                             validator: (value) {
                               if (value!.isEmpty) {
                                 return "Email is required";
+                              }
+                              else{
+                                return '';
                               }
                             },
                             isPassword: false,
@@ -123,6 +123,9 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                               return "Password is required";
                             } else if (value.length < 8) {
                               return "Password length must be 8 characters or more";
+                            }
+                            else{
+                              return '';
                             }
                           },
                           isPassword: true,

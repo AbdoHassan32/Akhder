@@ -1,5 +1,6 @@
 import 'package:akhder/features/auth/presentation/views/login_view.dart';
 import 'package:akhder/features/auth/presentation/views/register_view.dart';
+import 'package:akhder/features/disease_detection/presentation/views/disease_detection_view.dart';
 import 'package:akhder/features/home/presentation/views/home_view.dart';
 import 'package:akhder/features/home/presentation/views/widgets/item_details_view_body.dart';
 import 'package:go_router/go_router.dart';
@@ -13,6 +14,7 @@ abstract class AppRouter{
   static String kRegisterView = '/registerView';
   static String kHomeView = '/homeView';
   static String kItemDetailsView = '/itemDetailsView';
+  static String kDiseaseDetectionView = '/diseaseDetectionView';
 
   static final router = GoRouter(
     routes: [
@@ -39,6 +41,10 @@ abstract class AppRouter{
       GoRoute(
           path: kItemDetailsView,
           builder: (context , state) => const ItemDetailsViewBody(),
+      ),
+      GoRoute(
+        path: kDiseaseDetectionView,
+        builder: (context , state) => const DiseaseDetectionView(),
       ),
     ],
 );
