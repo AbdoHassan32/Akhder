@@ -1,7 +1,7 @@
 import 'package:akhder/features/Details-screen/presentation/views/widgets/item_count.dart';
 import 'package:akhder/features/Details-screen/presentation/views/widgets/Hidden_text_widget.dart';
 import 'package:akhder/features/Details-screen/presentation/views/widgets/favourite_icon.dart';
-import 'package:akhder/features/Details-screen/presentation/views/widgets/page_view.dart';
+import 'package:akhder/features/Details-screen/presentation/views/widgets/item_product_page_view.dart';
 import 'package:akhder/features/Details-screen/presentation/views/widgets/rating_bar.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +12,7 @@ class DetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: EdgeInsets.only(left: 8, right: 8),
+        padding: const EdgeInsets.only(left: 8, right: 8),
         child: SingleChildScrollView(
           child: Column(
             children: [
@@ -26,7 +26,7 @@ class DetailScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              const MyPageView(),
+              const ItemPicturePageView(),
               const SizedBox(
                 height: 8,
               ),

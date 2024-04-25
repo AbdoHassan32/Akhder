@@ -11,7 +11,7 @@ class CartItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       child: Container(
-        height: MediaQuery.of(context).size.height*0.15,
+        height:120,
         color: Colors.white,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -26,9 +26,7 @@ class CartItem extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(
-                vertical: 10,
-              ),
+              padding: const EdgeInsets.all(10.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
@@ -40,7 +38,13 @@ class CartItem extends StatelessWidget {
                     const Text('1kg, Price',
                       style: Styles.textStyle16,
                     ),
+                  const Spacer(
+                    flex: 2,
+                  ),
                   ItemCount(),
+                  const Spacer(
+                    flex: 1,
+                  ),
                 ],
               ),
             ),
@@ -51,14 +55,14 @@ class CartItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 IconButton(onPressed: () {}, icon: const Icon(Icons.close)),
-                const SizedBox(
-                  height: 18,
+                const Spacer(
+                  flex: 2,
                 ),
-                const Text('\$1.99',
-                    style: TextStyle(
-                        fontSize: 17,
-                        color: Colors.black,
-                        fontWeight: FontWeight.w500)),
+                const Text('100 EGP',
+                    style: Styles.textStyle18),
+               const Spacer(
+                  flex:2 ,
+                ),
               ],
             )
           ],

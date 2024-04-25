@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:akhder/features/Details-screen/presentation/views/widgets/item_count.dart';
 import 'package:akhder/features/Details-screen/presentation/views/widgets/Hidden_text_widget.dart';
 import 'package:akhder/features/Details-screen/presentation/views/widgets/favourite_icon.dart';
-import 'package:akhder/features/Details-screen/presentation/views/widgets/page_view.dart';
+import 'package:akhder/features/Details-screen/presentation/views/widgets/item_product_page_view.dart';
 import 'package:akhder/features/Details-screen/presentation/views/widgets/rating_bar.dart';
 import 'package:go_router/go_router.dart';
 
@@ -35,7 +35,7 @@ class ItemDetailsViewBody extends StatelessWidget {
               ],
             ),
           ),
-          const MyPageView(),
+          const ItemPicturePageView(),
           const SizedBox(
             height: 8,
           ),

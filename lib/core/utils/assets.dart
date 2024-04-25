@@ -6,4 +6,7 @@ static const testProduct = 'assets/images/test_product.png';
 static const disease_detection = 'assets/images/disease_detection.png';
 static const paymentsuccess = 'assets/images/payment_success.png.png';
 static const paymentfailed = 'assets/images/payment_failed.png';
+static const testProduct2 = 'assets/images/test_product_2.jpg';
+static const testProduct3 = 'assets/images/test_product_3.jpg';
+
 }
