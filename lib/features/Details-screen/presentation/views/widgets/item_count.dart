@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../../../core/utils/styles.dart';
+
 class ItemCount extends StatefulWidget {
   @override
   _ItemCountState createState() => _ItemCountState();
@@ -41,7 +43,7 @@ class _ItemCountState extends State<ItemCount> {
           child: Center(
             child: Text(
               count.toString(),
-              style: TextStyle(fontSize: 15),
+              style: Styles.textStyle14,
             ),
           ),
         ),

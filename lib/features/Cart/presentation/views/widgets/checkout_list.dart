@@ -15,11 +15,11 @@ class Checkoutlist extends StatelessWidget {
         InkWell(
           onTap:onPressed ,
           child: Padding(
-            padding:  EdgeInsets.all( 15),
+            padding: const EdgeInsets.all( 15),
             child:  Row(
               children: [
                 Text(title,
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: Colors.black26,
                       fontSize: 18,
                       fontWeight: FontWeight.w600
@@ -28,7 +28,7 @@ class Checkoutlist extends StatelessWidget {
                  Expanded(
                   child: Text(value,
                     textAlign: TextAlign.end,
-                    style: TextStyle(
+                    style: const TextStyle(
                         color: Colors.black,
                         fontSize: 18,
                         fontWeight: FontWeight.w400

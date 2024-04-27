@@ -1,5 +1,5 @@
 import 'package:akhder/features/Cart/presentation/views/widgets/cart_view_body.dart';
-import 'package:akhder/features/home/presentation/views/widgets/favorites_view_body.dart';
+import 'package:akhder/features/favorites/presentation/views/widgets/favorites_view_body.dart';
 import 'package:akhder/features/home/presentation/views/widgets/home_view_body.dart';
 import 'package:akhder/features/home/presentation/views/widgets/navigation_drawer_widget.dart';
 import 'package:akhder/palette.dart';
@@ -18,7 +18,6 @@ class _HomeViewState extends State<HomeView> {
     HomeViewBody(),
     CartViewBody(),
     FavoritesViewBody(),
-
   ];
   @override
   Widget build(BuildContext context) {

@@ -14,6 +14,7 @@ class CartItem extends StatelessWidget {
         height:120,
         color: Colors.white,
         child: Row(
+          textDirection: TextDirection.rtl,
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -28,15 +29,25 @@ class CartItem extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
+                textDirection:TextDirection.rtl,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('منتج مصري',
+                  Padding(
+                    padding: const EdgeInsets.only(right: 12),
+                    child: Text('منتج مصري',
+                      textDirection:TextDirection.rtl,
                       style: Styles.textStyle18.copyWith(
-                        fontWeight: FontWeight.bold,
-                      ),
+                          fontWeight: FontWeight.bold,
+
+                        ),
+                    ),
                   ),
-                    const Text('1kg, Price',
-                      style: Styles.textStyle16,
+                    const Padding(
+                      padding:  EdgeInsets.only(right: 12),
+                      child:  Text('1 كجم',
+                        textDirection:TextDirection.rtl,
+                        style: Styles.textStyle16,
+                      ),
                     ),
                   const Spacer(
                     flex: 2,
@@ -52,13 +63,15 @@ class CartItem extends StatelessWidget {
               flex: 1,
             ),
             Column(
+              textDirection: TextDirection.rtl,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 IconButton(onPressed: () {}, icon: const Icon(Icons.close)),
                 const Spacer(
                   flex: 2,
                 ),
-                const Text('100 EGP',
+                const Text('100 ج.م',
+                    textDirection: TextDirection.rtl,
                     style: Styles.textStyle18),
                const Spacer(
                   flex:2 ,
