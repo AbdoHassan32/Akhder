@@ -91,7 +91,7 @@ class _CartViewBodyState extends State<CartViewBody> {
         isDismissible: false,
         context: context,
         builder: (context) {
-          return const checkoutview();
+          return const Checkoutview();
         });
   }
 }

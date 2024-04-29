@@ -35,14 +35,14 @@ class Checkoutlist extends StatelessWidget {
                     ),
                   ),
                 ),
-                 Icon(Icons.arrow_forward_ios),
+                 const Icon(Icons.arrow_forward_ios),
           
           
               ],
             ),
           ),
         ),
-        Divider(
+        const Divider(
           color: Colors.black12,
           height: 1,
         ),

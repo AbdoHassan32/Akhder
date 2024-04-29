@@ -3,13 +3,13 @@ import 'package:flutter/src/material/icons.dart';
 import 'package:flutter/material.dart';
 import 'package:akhder/features/Cart/presentation/views/widgets/checkout_list.dart';
 
-class checkoutview extends StatefulWidget {
-  const checkoutview({super.key});
+class Checkoutview extends StatefulWidget {
+  const Checkoutview({super.key});
   @override
-  State<checkoutview> createState() => _checkoutviewState();
+  State<Checkoutview> createState() => CheckoutviewState();
 }
 
-class _checkoutviewState extends State<checkoutview> {
+class CheckoutviewState extends State<Checkoutview> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -21,7 +21,7 @@ class _checkoutviewState extends State<checkoutview> {
         children: [
           Padding(
             //padding:  EdgeInsets.symmetric(vertical: 15),
-            padding: EdgeInsets.all(15),
+            padding: const EdgeInsets.all(15),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -29,7 +29,7 @@ class _checkoutviewState extends State<checkoutview> {
                   onTap: () {
                     Navigator.pop(context);
                   },
-                  child: Icon(
+                  child: const Icon(
                     Icons.close,
                     size: 30,
                   ),
@@ -88,10 +88,10 @@ class _checkoutviewState extends State<checkoutview> {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Padding(
-                padding: EdgeInsets.only(right: 5, bottom: 15, top: 8),
+                padding: const EdgeInsets.only(right: 5, bottom: 15, top: 8),
                 child: SizedBox(
                   width: MediaQuery.of(context).size.width*0.8,
-                  child: Text(
+                  child: const Text(
                     'عند الضغط علي تأكيد الطلب يتم الموافقة علي الشروط و الأحكام. ',
                     style: TextStyle(fontSize: 15, color: Colors.black),
                     textDirection: TextDirection.rtl,
@@ -108,7 +108,7 @@ class _checkoutviewState extends State<checkoutview> {
             onPressed: () {},
             child: Container(
               height: 50,
-              padding: EdgeInsets.all(10.0),
+              padding: const EdgeInsets.all(10.0),
               decoration: BoxDecoration(
                 color: Colors.green,
                 borderRadius: BorderRadius.circular(25),
