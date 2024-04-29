@@ -66,10 +66,10 @@ class _CartViewBodyState extends State<CartViewBody> {
                           padding: EdgeInsets.symmetric(
                               horizontal: 45.0, vertical: 12.0),
                           child: Text(
-                            "Go To Checkout",
+                            "التحقق من الدفع",
                             style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 17,
+                                fontSize: 20,
                                 fontWeight: FontWeight.w500),
                           ),
                         ),
@@ -91,7 +91,7 @@ class _CartViewBodyState extends State<CartViewBody> {
         isDismissible: false,
         context: context,
         builder: (context) {
-          return const checkoutview();
+          return const Checkoutview();
         });
   }
 }

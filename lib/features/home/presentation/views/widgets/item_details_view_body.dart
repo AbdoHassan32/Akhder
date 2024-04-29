@@ -7,6 +7,7 @@ import 'package:akhder/features/Details-screen/presentation/views/widgets/favour
 import 'package:akhder/features/Details-screen/presentation/views/widgets/item_product_page_view.dart';
 import 'package:akhder/features/Details-screen/presentation/views/widgets/rating_bar.dart';
 import 'package:go_router/go_router.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class ItemDetailsViewBody extends StatelessWidget {
   const ItemDetailsViewBody({Key? key}) : super(key: key);
@@ -115,7 +116,17 @@ class ItemDetailsViewBody extends StatelessWidget {
             flex: 1,
           ),
           TextButton(
-            onPressed: () {},
+            onPressed: () {
+              Fluttertoast.showToast(
+                msg: 'تم أضافة المنتج إلي العربة',
+                toastLength: Toast.LENGTH_SHORT,
+                gravity: ToastGravity.BOTTOM,
+                timeInSecForIosWeb: 1,
+                backgroundColor: Colors.black,
+                textColor: Colors.white,
+               fontSize: 20,
+              );
+            },
             child: Container(
               padding: const EdgeInsets.all(5),
               decoration: BoxDecoration(
