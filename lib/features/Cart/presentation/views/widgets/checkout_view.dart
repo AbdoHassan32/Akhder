@@ -88,7 +88,8 @@ class CheckoutviewState extends State<Checkoutview> {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Padding(
-                padding: const EdgeInsets.only(right: 5, bottom: 5, top: 8),
+               
+                padding: const EdgeInsets.only(right: 5, bottom: 15, top: 8),
                 child: SizedBox(
                   width: MediaQuery.of(context).size.width*0.8,
                   child: const Text(
