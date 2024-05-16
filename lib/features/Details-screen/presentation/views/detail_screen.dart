@@ -1,7 +1,5 @@
 import 'package:akhder/features/Details-screen/presentation/views/widgets/item_count.dart';
-import 'package:akhder/features/Details-screen/presentation/views/widgets/Hidden_text_widget.dart';
 import 'package:akhder/features/Details-screen/presentation/views/widgets/favourite_icon.dart';
-import 'package:akhder/features/Details-screen/presentation/views/widgets/item_product_page_view.dart';
 import 'package:akhder/features/Details-screen/presentation/views/widgets/rating_bar.dart';
 import 'package:flutter/material.dart';
 
@@ -26,7 +24,7 @@ class DetailScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              const ItemPicturePageView(),
+             // const ItemPicturePageView(),
               const SizedBox(
                 height: 8,
               ),
@@ -84,7 +82,7 @@ class DetailScreen extends StatelessWidget {
               const SizedBox(
                 height: 1,
               ),
-              HiddenTextWidget(),
+             // HiddenTextWidget(),
               const Divider(
                 height: 30,
                 thickness: 1,
@@ -108,7 +106,7 @@ class DetailScreen extends StatelessWidget {
               TextButton(
                 onPressed: () {},
                 child: Container(
-                  padding: EdgeInsets.all(5),
+                  padding: const EdgeInsets.all(5),
                   decoration: BoxDecoration(
                     color: Colors.green,
                     borderRadius: BorderRadius.circular(16),

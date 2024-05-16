@@ -1,18 +1,14 @@
 import 'package:akhder/core/utils/assets.dart';
-import 'package:akhder/core/widgets/custom_textfield_widget.dart';
+import 'package:akhder/features/home/presentation/views/widgets/corps_item_list_view.dart';
 import 'package:akhder/features/home/presentation/views/widgets/custom_category_title_widget.dart';
-import 'package:akhder/features/home/presentation/views/widgets/custom_item_list_view.dart';
-import 'package:akhder/features/home/presentation/views/widgets/custom_item_widget.dart';
-import 'package:akhder/features/home/presentation/views/widgets/navigation_drawer_widget.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:akhder/features/home/presentation/views/widgets/agricultural_fertilizers_item_list_view.dart';
+import 'package:akhder/features/home/presentation/views/widgets/insecticides_item_list_view.dart';
+import 'package:akhder/features/home/presentation/views/widgets/seeds_item_list_view.dart';
+import 'package:akhder/features/home/presentation/views/widgets/tools_item_list_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-import '../../../../../core/utils/styles.dart';
-import '../../../../../core/widgets/custom_button_widget.dart';
-import '../../../../../palette.dart';
 
 class HomeViewBody extends StatelessWidget {
   const HomeViewBody({
@@ -87,20 +83,11 @@ class HomeViewBody extends StatelessWidget {
               ),
             ),
             CustomCategoryTitleWidget(
-                categoryTitle: 'عروض خاصة', onPressed: () {}),
+                categoryTitle: 'أسمدة زراعية', onPressed: () {}),
             const SizedBox(
               height: 20,
             ),
-            const CustomItemListView(),
-            const SizedBox(
-              height: 15,
-            ),
-            CustomCategoryTitleWidget(
-                categoryTitle: 'أفضل المبيعات', onPressed: () {}),
-            const SizedBox(
-              height: 20,
-            ),
-            const CustomItemListView(),
+            const AgriculturalFertilizersItemListView(),
             const SizedBox(
               height: 15,
             ),
@@ -109,7 +96,34 @@ class HomeViewBody extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            const CustomItemListView(),
+            const InsecticidesItemListView(),
+            const SizedBox(
+              height: 15,
+            ),
+            CustomCategoryTitleWidget(
+                categoryTitle: 'معدات زراعية', onPressed: () {}),
+            const SizedBox(
+              height: 20,
+            ),
+            const ToolsItemListView(),
+            const SizedBox(
+              height: 20,
+            ),
+            CustomCategoryTitleWidget(
+                categoryTitle: 'محاصيل زراعية', onPressed: () {}),
+            const SizedBox(
+              height: 20,
+            ),
+            const CorpsItemListView(),
+            const SizedBox(
+              height: 20,
+            ),
+            CustomCategoryTitleWidget(
+                categoryTitle: 'بذور', onPressed: () {}),
+            const SizedBox(
+              height: 20,
+            ),
+            const SeedsItemListView(),
             const SizedBox(
               height: 20,
             ),

@@ -8,9 +8,13 @@ import 'package:akhder/features/Details-screen/presentation/views/widgets/item_p
 import 'package:akhder/features/Details-screen/presentation/views/widgets/rating_bar.dart';
 import 'package:go_router/go_router.dart';
 
-class ItemDetailsViewBody extends StatelessWidget {
-  const ItemDetailsViewBody({Key? key}) : super(key: key);
+import '../../../../../palette.dart';
+import '../../../data/models/product.dart';
 
+class ItemDetailsViewBody extends StatelessWidget {
+  const ItemDetailsViewBody({Key? key, required this.product})
+      : super(key: key);
+  final Product product;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -29,39 +33,57 @@ class ItemDetailsViewBody extends StatelessWidget {
                 IconButton(
                     onPressed: () {
                       GoRouter.of(context).pop();
-                  },
+                    },
                     icon: const Icon(Icons.arrow_back_ios)),
-               const Icon(Icons.upload_rounded),
+                const Icon(Icons.upload_rounded),
               ],
             ),
           ),
-          const ItemPicturePageView(),
+          ItemPicturePageView(
+            product: product,
+          ),
           const SizedBox(
             height: 8,
           ),
           Row(
+            textDirection: TextDirection.rtl,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              FavoriteButton(),
-              const Padding(
-                padding: EdgeInsets.only(right: 10),
-                child: Text(
-                  'بذور نعناع شاهين',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 25,
+              Padding(
+                padding: const EdgeInsets.only(left: 10),
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width*0.6,
+                  child: Text(
+                    product.name!,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 25,
+                    ),
+                    overflow: TextOverflow.ellipsis,
+                    textDirection: TextDirection.rtl,
+                    maxLines: 2,
+                    softWrap: true,
                   ),
                 ),
               ),
+              FavoriteButton(),
+
             ],
           ),
-          const Padding(
-            padding: EdgeInsets.only(right: 10),
+           Padding(
+            padding: const EdgeInsets.only(right: 10),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Text('جم'),
-                Text('50'),
+                Text(
+                  product.weight != 0 ? (product.kgOrL == true ? ('${product.weight} كجم') : '${product.weight} لتر'):'',
+                  style: Styles.textStyle14.copyWith(
+                      color: kGreyTextColor,
+                      fontWeight: FontWeight.w500
+                  ),
+                  textDirection: TextDirection.rtl,
+                ),
+
               ],
             ),
           ),
@@ -72,14 +94,15 @@ class ItemDetailsViewBody extends StatelessWidget {
             children: [
               ItemCount(),
               const Spacer(),
-              const Padding(
-                padding: EdgeInsets.only(right: 10),
+              Padding(
+                padding:const EdgeInsets.only(right: 10),
                 child: Text(
-                  '75' ' EGP',
-                  style: TextStyle(
+                  '${product.price} ج',
+                  style: const TextStyle(
                     fontWeight: FontWeight.w500,
                     fontSize: 25,
                   ),
+                  textDirection: TextDirection.rtl,
                 ),
               ),
             ],
@@ -93,7 +116,7 @@ class ItemDetailsViewBody extends StatelessWidget {
           const SizedBox(
             height: 1,
           ),
-          HiddenTextWidget(),
+          HiddenTextWidget(product: product,),
           const Divider(
             height: 30,
             thickness: 1,

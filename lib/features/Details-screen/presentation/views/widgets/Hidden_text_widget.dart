@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 
+import '../../../../home/data/models/product.dart';
+
 class HiddenTextWidget extends StatefulWidget {
+  const HiddenTextWidget({super.key, required this.product});
+  final Product product;
   @override
   _HiddenTextWidgetState createState() => _HiddenTextWidgetState();
 }
 
 class _HiddenTextWidgetState extends State<HiddenTextWidget> {
   bool isTextVisible = true;
-
   void toggleTextVisibility() {
     setState(() {
       isTextVisible = !isTextVisible;
@@ -42,17 +45,24 @@ class _HiddenTextWidgetState extends State<HiddenTextWidget> {
             ),
           ],
         ),
+        const SizedBox(
+          height: 5,
+        ),
         if (isTextVisible)
-          const Padding(
-            padding: EdgeInsets.all(5),
-            child: Text(
-              'تمت صياغته بعناية ،معبأة مع مجموعة من الخيرات ،تغليف صحي،راجع العبوة للحصول علي معلومات حول الاستخدام',
-              textAlign: TextAlign.right,
-              style: TextStyle(
-                fontSize: 14,
+           Padding(
+            padding: const EdgeInsets.all(5),
+            child: Align(
+              alignment: Alignment.centerRight,
+              child: Text(
+                widget.product.description!,
+                textDirection: TextDirection.rtl,
+                style: const TextStyle(
+                  fontSize: 14,
+                ),
+                maxLines: 3,
+                textWidthBasis: TextWidthBasis.longestLine,
+                overflow: TextOverflow.ellipsis,
               ),
-              maxLines: 2,
-              textWidthBasis: TextWidthBasis.longestLine,
             ),
           ),
       ],
