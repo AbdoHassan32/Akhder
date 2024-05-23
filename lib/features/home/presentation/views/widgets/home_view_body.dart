@@ -29,6 +29,7 @@ class HomeViewBody extends StatelessWidget {
                 horizontal: 25,
               ),
               child: Row(
+                textDirection: TextDirection.rtl,
                 children: [
                   IconButton(
                       onPressed: () {

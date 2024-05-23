@@ -14,21 +14,22 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   int selectedItemIndex = 0;
-  List<Widget> body = const [
-    HomeViewBody(),
-    CartViewBody(),
+  List<Widget> body = [
+    const HomeViewBody(),
+    const CartViewBody(),
     FavoritesViewBody(),
   ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      drawer: NavigationDrawerWidget(),
+      endDrawer: NavigationDrawerWidget(),
       bottomNavigationBar: SizedBox(
         height: 70,
         child: BottomNavigationBar(
           items: const [
-            BottomNavigationBarItem(icon: Icon(Icons.home_rounded), label: 'الصفحة الرئيسية'),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.home_rounded), label: 'الصفحة الرئيسية'),
             BottomNavigationBarItem(
                 icon: Icon(Icons.shopping_cart_rounded), label: 'العربة'),
             BottomNavigationBarItem(
@@ -37,9 +38,7 @@ class _HomeViewState extends State<HomeView> {
           onTap: (index) {
             selectedItemIndex = index;
             setState(() {
-              if(selectedItemIndex==0){
-
-              }
+              if (selectedItemIndex == 0) {}
             });
           },
           selectedFontSize: 14,

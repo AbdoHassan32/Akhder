@@ -8,7 +8,12 @@ class Product {
       this.stockNum, 
       this.kgOrL, 
       this.imageUrl, 
-      this.category,});
+      this.category,
+    this.isFav,
+    this.userId,
+    this.docId
+
+  });
 
   Product.fromJson(dynamic json) {
     id = json['id'];
@@ -20,6 +25,9 @@ class Product {
     kgOrL = json['kgOrL'];
     imageUrl = json['imageUrl'];
     category = json['category'] != null ? Category.fromJson(json['category']) : null;
+    isFav = json['isFav'];
+    docId = json['docId'];
+    userId = json['userId'];
   }
   int? id;
   String? name;
@@ -30,7 +38,10 @@ class Product {
   bool? kgOrL;
   String? imageUrl;
   Category? category;
-Product copyWith({  int? id,
+  bool? isFav = false;
+  String? docId='';
+  String? userId;
+  Product copyWith({  int? id,
   String? name,
   String? description,
   double? price,
@@ -39,6 +50,9 @@ Product copyWith({  int? id,
   bool? kgOrL,
   String? imageUrl,
   Category? category,
+    bool? isFav=false,
+    String? docId = '',
+    String? userId,
 }) => Product(  id: id ?? this.id,
   name: name ?? this.name,
   description: description ?? this.description,
@@ -48,6 +62,9 @@ Product copyWith({  int? id,
   kgOrL: kgOrL ?? this.kgOrL,
   imageUrl: imageUrl ?? this.imageUrl,
   category: category ?? this.category,
+      isFav: isFav?? this.isFav,
+    docId: docId?? this.docId,
+      userId: userId?? this.userId,
 );
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -59,6 +76,10 @@ Product copyWith({  int? id,
     map['stockNum'] = stockNum;
     map['kgOrL'] = kgOrL;
     map['imageUrl'] = imageUrl;
+    map['userId'] = userId;
+    map['docId'] = docId;
+    map['isFav'] = isFav;
+
     if (category != null) {
       map['category'] = category?.toJson();
     }

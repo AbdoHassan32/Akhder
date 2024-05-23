@@ -66,7 +66,7 @@ class ItemDetailsViewBody extends StatelessWidget {
                   ),
                 ),
               ),
-              FavoriteButton(),
+              FavoriteButton(product: product),
 
             ],
           ),

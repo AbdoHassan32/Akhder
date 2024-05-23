@@ -1,5 +1,4 @@
 import 'package:akhder/features/Details-screen/presentation/views/widgets/item_count.dart';
-import 'package:akhder/features/Details-screen/presentation/views/widgets/favourite_icon.dart';
 import 'package:akhder/features/Details-screen/presentation/views/widgets/rating_bar.dart';
 import 'package:flutter/material.dart';
 
@@ -28,11 +27,11 @@ class DetailScreen extends StatelessWidget {
               const SizedBox(
                 height: 8,
               ),
-              Row(
+             const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  FavoriteButton(),
-                  const Padding(
+                //  FavoriteButton(product: th),
+                   Padding(
                     padding: EdgeInsets.only(right: 10),
                     child: Text(
                       'بذور نعناع شاهين',
