@@ -33,7 +33,7 @@ class HomeViewBody extends StatelessWidget {
                 children: [
                   IconButton(
                       onPressed: () {
-                        Scaffold.of(context).openDrawer();
+                        Scaffold.of(context).openEndDrawer();
                       },
                       icon: const Icon(
                         FontAwesomeIcons.bars,

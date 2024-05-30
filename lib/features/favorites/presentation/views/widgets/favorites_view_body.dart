@@ -7,14 +7,14 @@ import 'package:flutter/material.dart';
 
 class FavoritesViewBody extends StatelessWidget {
    FavoritesViewBody({Key? key}) : super(key: key);
-  final CollectionReference favorites =
-      FirebaseFirestore.instance.collection('favorites');
+  final Stream<QuerySnapshot> favorites =
+      FirebaseFirestore.instance.collection('favorites').orderBy('createdAt',descending:false).snapshots();
   final User? user = FirebaseAuth.instance.currentUser;
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<QuerySnapshot>(
-      future: favorites.orderBy('createdAt').get(),
+    return StreamBuilder<QuerySnapshot>(
+      stream: favorites,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           List<Product> productList = [];
