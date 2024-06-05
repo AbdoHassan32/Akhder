@@ -3,6 +3,7 @@ import 'package:akhder/features/auth/presentation/views/register_view.dart';
 import 'package:akhder/features/disease_detection/presentation/views/disease_detection_view.dart';
 import 'package:akhder/features/home/data/models/product.dart';
 import 'package:akhder/features/home/presentation/views/home_view.dart';
+import 'package:akhder/features/irregation/presentation/views/irrigation_view.dart';
 import 'package:go_router/go_router.dart';
 import '../../features/home/presentation/views/item_details_view.dart';
 import '../../features/onboarding/presentation/views/onboarding_view.dart';
@@ -16,6 +17,7 @@ abstract class AppRouter{
   static String kHomeView = '/homeView';
   static String kItemDetailsView = '/itemDetailsView';
   static String kDiseaseDetectionView = '/diseaseDetectionView';
+  static String kIrrigationView = '/irrigationView';
 
   static final router = GoRouter(
     routes: [
@@ -46,6 +48,10 @@ abstract class AppRouter{
       GoRoute(
         path: kDiseaseDetectionView,
         builder: (context , state) => const DiseaseDetectionView(),
+      ),
+      GoRoute(
+        path: kIrrigationView,
+        builder: (context , state) => const IrrigationView(),
       ),
     ],
 );

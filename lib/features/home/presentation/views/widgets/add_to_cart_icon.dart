@@ -20,7 +20,7 @@ class AddToCartIcon extends StatelessWidget {
             .get();
         if ((product.docId == '') || (product.docId == null )||a.exists==false) {
           product.userId = user!.email;
-          product.itemCountInFirebase = product.itemCount;
+          product.itemCountInFirebase = product.itemCount ?? (product.itemCount=1) ;
           print(user!.email);
           print(product.userId);
 
@@ -31,7 +31,7 @@ class AddToCartIcon extends StatelessWidget {
             'weight': product.weight,
             'stockNum': product.stockNum,
             'kgOrL': product.kgOrL,
-            'price': product.price! * product.itemCount!,
+            'price': product.price! + product.price!,
             'createdAt': DateTime.now(),
             'userId': product.userId,
             'id': product.id,

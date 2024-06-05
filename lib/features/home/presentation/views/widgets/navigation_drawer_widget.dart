@@ -94,7 +94,9 @@ class NavigationDrawerWidget extends StatelessWidget {
                   .copyWith(fontWeight: FontWeight.bold),
               leading: const Icon(Icons.safety_check),
               title: const Text('عرض مستوى الرطوبة'),
-              onTap: () {},
+              onTap: () {
+                GoRouter.of(context).push(AppRouter.kIrrigationView);
+              },
               tileColor: kPrimaryColor,
               textColor: Colors.white,
               iconColor: Colors.white,

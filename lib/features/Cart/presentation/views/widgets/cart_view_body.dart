@@ -122,7 +122,7 @@ class _CartViewBodyState extends State<CartViewBody> {
                                               fontWeight: FontWeight.w500),
                                         ),
                                         Text(
-                                          '${total} ج.م',
+                                          ' المجموع : ${total} ج.م',
                                           textDirection: TextDirection.rtl,
                                           style: const TextStyle(
                                               color: Colors.white,

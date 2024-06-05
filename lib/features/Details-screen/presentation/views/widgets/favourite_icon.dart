@@ -15,19 +15,18 @@ class FavoriteButton extends StatefulWidget {
 
 class _FavoriteButtonState extends State<FavoriteButton> {
   final User? user = FirebaseAuth.instance.currentUser;
-
-  CollectionReference favorites =
+  final CollectionReference favorites =
       FirebaseFirestore.instance.collection('favorites');
-
   @override
   Widget build(BuildContext context) {
     return IconButton(
         icon: Icon(
           widget.product.isFav != null ? widget.product.isFav! ? Icons.favorite : Icons.favorite_border  :Icons.favorite_border,
-          color: widget.product.isFav != null ? widget.product.isFav! ? Colors.red : null : null,
+          color: widget.product.isFav != null ? widget.product.isFav! ? Colors.red :null:null ,
 
         ),
         onPressed: () async {
+
           if ((widget.product.isFav == false && widget.product.docId == '')||(widget.product.isFav == null && widget.product.docId == null)) {
             widget.product.isFav = true;
             widget.product.userId = user!.email;
@@ -48,6 +47,8 @@ class _FavoriteButtonState extends State<FavoriteButton> {
               'category' : null,
               'isFav':widget.product.isFav,
               'docId':widget.product.docId,
+              'itemCount': null,
+              'itemCountInFirebase':null ,
             }
             ).then((DocumentReference doc) {
               widget.product.docId = doc.id;

@@ -27,6 +27,7 @@ final Product product;
               child: CachedNetworkImage(
                 imageUrl: product.imageUrl!,
                 height: MediaQuery.of(context).size.height*0.1,
+                width: MediaQuery.of(context).size.width*0.14,
 
               ),
             ),
