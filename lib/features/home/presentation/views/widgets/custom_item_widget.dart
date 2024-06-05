@@ -1,5 +1,6 @@
 import 'package:akhder/core/utils/app_router.dart';
 import 'package:akhder/features/home/data/models/product.dart';
+import 'package:akhder/features/home/presentation/views/widgets/add_to_cart_icon.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -85,13 +86,7 @@ final Product product;
                     color: kPrimaryColor,
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  child: IconButton(
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.add,
-                      color: Colors.white,
-                    ),
-                  ),
+                  child: AddToCartIcon(product: product,),
                 ),
               ],
             )

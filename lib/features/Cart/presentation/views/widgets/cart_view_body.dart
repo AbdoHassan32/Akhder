@@ -1,6 +1,10 @@
+import 'package:akhder/palette.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:akhder/features/Cart/presentation/views/widgets/checkout_view.dart';
 import '../../../../../core/utils/styles.dart';
+import '../../../../home/data/models/product.dart';
 import 'cart_item.dart';
 
 class CartViewBody extends StatefulWidget {
@@ -11,78 +15,181 @@ class CartViewBody extends StatefulWidget {
 }
 
 class _CartViewBodyState extends State<CartViewBody> {
-  @override
+   late List<String> freq;
+  final Stream<QuerySnapshot> cart = FirebaseFirestore.instance
+      .collection('cart')
+      .orderBy('createdAt', descending: false)
+      .snapshots();
+  final User? user = FirebaseAuth.instance.currentUser;
+
+   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 20.0),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          const Text(
-            'العربة',
-            style: Styles.textStyle24,
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          const Divider(
-            thickness: 0.5,
-          ),
-          Expanded(
-            child: Stack(
-              alignment: Alignment.bottomCenter,
-              children: [
-                ListView.separated(
-                    padding: const EdgeInsets.only(
-                      left: 20,
-                      top: 10,
-                      right: 20,
-                      bottom: 50,
-                    ),
-                    physics: const BouncingScrollPhysics(),
-                    itemBuilder: (context, index) {
-                      return const CartItem();
-                    },
-                    separatorBuilder: (context, index) => const Divider(
-                          color: Colors.black26,
-                          height: 2,
-                        ),
-                    itemCount: 8),
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      ElevatedButton(
-                        onPressed: () {
-                          showCheckout();
-                        },
-                        style: ElevatedButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12.0),
+    return StreamBuilder<QuerySnapshot>(
+        stream: cart,
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            double total = 0;
+            List<Product> productList = [];
+            for (int i = 0; i < snapshot.data!.docs.length; i++) {
+              productList.add(Product.fromJson(snapshot.data!.docs[i]));
+              total += productList[i].price!* productList[i].itemCount!;
+            }
+            return Padding(
+              padding: const EdgeInsets.only(top: 20.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Text(
+                    'العربة',
+                    style: Styles.textStyle24,
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  const Divider(
+                    thickness: 0.5,
+                  ),
+                  Expanded(
+                    child: Stack(
+                      alignment: Alignment.bottomCenter,
+                      children: [
+                        ListView.separated(
+                            padding: const EdgeInsets.only(
+                              left: 20,
+                              top: 10,
+                              right: 20,
+                              bottom: 50,
                             ),
-                            backgroundColor: Colors.green),
-                        child: const Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 45.0, vertical: 12.0),
-                          child: Text(
-                            "Go To Checkout",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 17,
-                                fontWeight: FontWeight.w500),
+                            physics: const BouncingScrollPhysics(),
+                            itemBuilder: (context, index) {
+                              return productList[index].userId == user!.email
+                                  ? CartItem(
+                                      product: productList[index],
+                                    )
+                                  : Container();
+                            },
+                            separatorBuilder: (context, index) => const Divider(
+                                  color: Colors.black26,
+                                  height: 2,
+                                ),
+                            itemCount: productList.length),
+                        Padding(
+                          padding: const EdgeInsets.all(20.0),
+                          child: productList.isEmpty ? ElevatedButton(
+                                  onPressed: () {
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(12.0),
+                                      ),
+                                      backgroundColor: kGreyTextColor),
+                                  child: const Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 45.0, vertical: 12.0),
+                                    child: Text(
+                                      'الذهاب للدفع',
+                                     textDirection: TextDirection.rtl,
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 17,
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                  ),
+                                )
+                              : ElevatedButton(
+                                  onPressed: () {
+                                    showCheckout();
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(12.0),
+                                      ),
+                                      backgroundColor: kPrimaryColor),
+                                  child:   Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 45.0, vertical: 12.0),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Text(
+                                          'الذهاب للدفع',
+                                          textDirection: TextDirection.rtl,
+                                          style: const TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 17,
+                                              fontWeight: FontWeight.w500),
+                                        ),
+                                        Text(
+                                          '${total} ج.م',
+                                          textDirection: TextDirection.rtl,
+                                          style: const TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 17,
+                                              fontWeight: FontWeight.w500),
+                                        ),
+                                      ],
+                                    )
+                                  ),
+                                ),
+                        )
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            );
+          } else {
+            return Padding(
+              padding: const EdgeInsets.only(top: 20.0),
+              child: SizedBox(
+                child: Column(
+                  textDirection: TextDirection.rtl,
+                  children: [
+                    const Text(
+                      'العربة',
+                      style: Styles.textStyle24,
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    const Divider(
+                      thickness: 0.5,
+                    ),
+                    const Spacer(
+                      flex: 1,
+                    ),
+                    const CircularProgressIndicator(),
+                    const Spacer(
+                      flex: 1,
+                    ),
+                    ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12.0),
                           ),
+                          backgroundColor: kGreyTextColor),
+                      child: const Padding(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 45.0, vertical: 12.0),
+                        child: Text(
+                          'الذهاب للدفع',
+                          textDirection:TextDirection.rtl,
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 17,
+                              fontWeight: FontWeight.w500),
                         ),
                       ),
-                    ],
-                  ),
-                )
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
+                    ),
+                  ],
+                ),
+              ),
+            );
+          }
+        });
   }
 
   void showCheckout() {

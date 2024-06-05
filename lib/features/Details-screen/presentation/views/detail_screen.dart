@@ -1,4 +1,3 @@
-import 'package:akhder/features/Details-screen/presentation/views/widgets/item_count.dart';
 import 'package:akhder/features/Details-screen/presentation/views/widgets/rating_bar.dart';
 import 'package:flutter/material.dart';
 
@@ -56,11 +55,11 @@ class DetailScreen extends StatelessWidget {
               const SizedBox(
                 height: 6,
               ),
-              Row(
-                children: [
-                  ItemCount(),
-                  const Spacer(),
-                  const Padding(
+               const Row(
+                children:  [
+               //   ItemCount(),
+                   Spacer(),
+                   Padding(
                     padding: EdgeInsets.only(right: 10),
                     child: Text(
                       '75' ' EGP',

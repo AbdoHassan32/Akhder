@@ -1,17 +1,21 @@
-import 'package:akhder/core/utils/assets.dart';
+import 'package:akhder/features/home/data/models/product.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:akhder/features/Details-screen/presentation/views/widgets/item_count.dart';
 
 import '../../../../../core/utils/styles.dart';
 
 class CartItem extends StatelessWidget {
-  const CartItem({super.key});
-
+   CartItem({super.key, required this.product});
+final Product product;
+   final CollectionReference cart =
+   FirebaseFirestore.instance.collection('cart');
   @override
   Widget build(BuildContext context) {
     return InkWell(
       child: Container(
-        height:120,
+        height:140,
         color: Colors.white,
         child: Row(
           textDirection: TextDirection.rtl,
@@ -20,31 +24,37 @@ class CartItem extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.only(top: 20),
-              child: Image.asset(
-                AssetsData.testProduct,
+              child: CachedNetworkImage(
+                imageUrl: product.imageUrl!,
                 height: MediaQuery.of(context).size.height*0.1,
 
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(10.0),
+              padding: const EdgeInsets.all(8.0),
               child: Column(
                 textDirection:TextDirection.rtl,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(right: 12),
-                    child: Text('منتج مصري',
-                      textDirection:TextDirection.rtl,
-                      style: Styles.textStyle18.copyWith(
-                          fontWeight: FontWeight.bold,
-
-                        ),
+                    child: SizedBox(
+                      width: MediaQuery.of(context).size.width*0.45,
+                      child: Text(
+                      product.name!,
+                        textDirection:TextDirection.rtl,
+                        style: Styles.textStyle18.copyWith(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines:1,
+                        softWrap: true,
+                      ),
                     ),
                   ),
-                    const Padding(
-                      padding:  EdgeInsets.only(right: 12),
-                      child:  Text('1 كجم',
+                     Padding(
+                      padding:  const EdgeInsets.only(right: 12),
+                      child:  Text(product.kgOrL! ? '${product.weight!} كجم ' : '${product.weight!} لتر ',
                         textDirection:TextDirection.rtl,
                         style: Styles.textStyle16,
                       ),
@@ -52,7 +62,10 @@ class CartItem extends StatelessWidget {
                   const Spacer(
                     flex: 2,
                   ),
-                  ItemCount(),
+                  ItemCount(product: product,),
+                  const Spacer(
+                    flex: 1,
+                  ),
                   const Spacer(
                     flex: 1,
                   ),
@@ -63,18 +76,29 @@ class CartItem extends StatelessWidget {
               flex: 1,
             ),
             Column(
-              textDirection: TextDirection.rtl,
-              crossAxisAlignment: CrossAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                IconButton(onPressed: () {}, icon: const Icon(Icons.close)),
+                IconButton(onPressed: () async {
+                  await FirebaseFirestore.instance
+                      .runTransaction((Transaction myTransaction) async {
+                    print('doc id is ${product.docId}');
+                    myTransaction.delete(cart.doc(product.docId));
+                  });
+                  product.docId = '';
+                  product.itemCountInFirebase=0;
+                  product.userId='';
+                },
+                 icon: const Icon(
+                  Icons.close
+                 ),),
                 const Spacer(
-                  flex: 2,
+                  flex: 1,
                 ),
-                const Text('100 ج.م',
+                Text('${product.price!*product.itemCount!} ج.م',
                     textDirection: TextDirection.rtl,
                     style: Styles.textStyle18),
-               const Spacer(
-                  flex:2 ,
+                const Spacer(
+                  flex: 1,
                 ),
               ],
             )

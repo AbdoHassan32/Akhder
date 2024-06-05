@@ -1,7 +1,8 @@
 import 'package:akhder/core/utils/styles.dart';
+import 'package:akhder/features/home/presentation/views/widgets/add_to_cart_button.dart';
+import 'package:akhder/features/home/presentation/views/widgets/price_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:akhder/features/Details-screen/presentation/views/widgets/item_count.dart';
 import 'package:akhder/features/Details-screen/presentation/views/widgets/Hidden_text_widget.dart';
 import 'package:akhder/features/Details-screen/presentation/views/widgets/favourite_icon.dart';
 import 'package:akhder/features/Details-screen/presentation/views/widgets/item_product_page_view.dart';
@@ -11,10 +12,16 @@ import 'package:go_router/go_router.dart';
 import '../../../../../palette.dart';
 import '../../../data/models/product.dart';
 
-class ItemDetailsViewBody extends StatelessWidget {
+class ItemDetailsViewBody extends StatefulWidget {
   const ItemDetailsViewBody({Key? key, required this.product})
       : super(key: key);
   final Product product;
+
+  @override
+  State<ItemDetailsViewBody> createState() => _ItemDetailsViewBodyState();
+}
+
+class _ItemDetailsViewBodyState extends State<ItemDetailsViewBody> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -40,7 +47,7 @@ class ItemDetailsViewBody extends StatelessWidget {
             ),
           ),
           ItemPicturePageView(
-            product: product,
+            product: widget.product,
           ),
           const SizedBox(
             height: 8,
@@ -54,7 +61,7 @@ class ItemDetailsViewBody extends StatelessWidget {
                 child: SizedBox(
                   width: MediaQuery.of(context).size.width*0.6,
                   child: Text(
-                    product.name!,
+                    widget.product.name!,
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 25,
@@ -66,7 +73,7 @@ class ItemDetailsViewBody extends StatelessWidget {
                   ),
                 ),
               ),
-              FavoriteButton(product: product),
+              FavoriteButton(product: widget.product),
 
             ],
           ),
@@ -76,7 +83,7 @@ class ItemDetailsViewBody extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Text(
-                  product.weight != 0 ? (product.kgOrL == true ? ('${product.weight} كجم') : '${product.weight} لتر'):'',
+                  widget.product.weight != 0 ? (widget.product.kgOrL == true ? ('${widget.product.weight} كجم') : '${widget.product.weight} لتر'):'',
                   style: Styles.textStyle14.copyWith(
                       color: kGreyTextColor,
                       fontWeight: FontWeight.w500
@@ -90,23 +97,7 @@ class ItemDetailsViewBody extends StatelessWidget {
           const SizedBox(
             height: 6,
           ),
-          Row(
-            children: [
-              ItemCount(),
-              const Spacer(),
-              Padding(
-                padding:const EdgeInsets.only(right: 10),
-                child: Text(
-                  '${product.price} ج',
-                  style: const TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 25,
-                  ),
-                  textDirection: TextDirection.rtl,
-                ),
-              ),
-            ],
-          ),
+          PriceWidget(product: widget.product),
           const Divider(
             height: 30,
             thickness: 1,
@@ -116,7 +107,7 @@ class ItemDetailsViewBody extends StatelessWidget {
           const SizedBox(
             height: 1,
           ),
-          HiddenTextWidget(product: product,),
+          HiddenTextWidget(product: widget.product,),
           const Divider(
             height: 30,
             thickness: 1,
@@ -137,26 +128,8 @@ class ItemDetailsViewBody extends StatelessWidget {
           const Spacer(
             flex: 1,
           ),
-          TextButton(
-            onPressed: () {},
-            child: Container(
-              padding: const EdgeInsets.all(5),
-              decoration: BoxDecoration(
-                color: Colors.green,
-                borderRadius: BorderRadius.circular(16),
-              ),
-              height: 50,
-              width: 250,
-              child: Center(
-                child: Text(
-                  'أضف للعربة',
-                  style: Styles.textStyle20.copyWith(
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-            ),
-          ),
+
+           AddToCartButton(product: widget.product),
         ],
       ),
     );

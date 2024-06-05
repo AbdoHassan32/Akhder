@@ -1,26 +1,51 @@
+import 'package:akhder/palette.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../core/utils/styles.dart';
+import '../../../../home/data/models/product.dart';
 
 class ItemCount extends StatefulWidget {
+const ItemCount({super.key, required this.product});
+final Product product ;
   @override
   _ItemCountState createState() => _ItemCountState();
 }
 
 class _ItemCountState extends State<ItemCount> {
-  int count = 0;
+  CollectionReference cart =
+  FirebaseFirestore.instance.collection('cart');
 
-  void increment() {
+  Future<void> increment() async {
+    if (widget.product.itemCount! < 20) {
+      await FirebaseFirestore.instance
+          .runTransaction((Transaction myTransaction) async {
+        myTransaction.update(cart.doc(widget.product.docId), {
+          'itemCount': widget.product.itemCount! + 1,
+          'itemCountInFirebase': widget.product.itemCountInFirebase! + 1,
+        });
+      });
+      widget.product.itemCount = 1 + widget.product.itemCount! ;
+      widget.product.itemCountInFirebase = widget.product.itemCountInFirebase! + 1 ;
+    }
     setState(() {
-      count++;
     });
   }
 
-  void decrement() {
+  Future<void> decrement() async {
+    if (widget.product.itemCount! > 1) {
+      await FirebaseFirestore.instance
+          .runTransaction((Transaction myTransaction) async {
+        myTransaction.update(cart.doc(widget.product.docId), {
+          'itemCount': widget.product.itemCount! - 1,
+          'itemCountInFirebase': widget.product.itemCountInFirebase! - 1,
+        });
+      });
+
+    widget.product.itemCount= widget.product.itemCount! - 1;
+    widget.product.itemCountInFirebase = widget.product.itemCountInFirebase! - 1;
+    }
     setState(() {
-      if (count > 0) {
-        count--;
-      }
     });
   }
 
@@ -29,7 +54,7 @@ class _ItemCountState extends State<ItemCount> {
     return Row(
       children: [
         IconButton(
-          icon: Icon(Icons.remove),
+          icon:const Icon(Icons.remove),
           onPressed: decrement,
         ),
         Container(
@@ -42,7 +67,7 @@ class _ItemCountState extends State<ItemCount> {
           width: 20,
           child: Center(
             child: Text(
-              count.toString(),
+              widget.product.itemCount.toString(),
               style: Styles.textStyle14,
             ),
           ),
@@ -50,7 +75,7 @@ class _ItemCountState extends State<ItemCount> {
         IconButton(
           icon: const Icon(
             Icons.add,
-            color: Colors.green,
+            color: kPrimaryColor,
           ),
           onPressed: increment,
         ),
