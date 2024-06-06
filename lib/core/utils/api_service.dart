@@ -21,3 +21,6 @@ class ApiService {
     return response.data;
   }
 }
+
+buildCacheOptions(Duration duration, {required bool forceRefresh, required Options options}) {
+}

@@ -12,39 +12,40 @@ class Checkoutlist extends StatelessWidget {
     return   Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        InkWell(
-          onTap:onPressed ,
-          child: Padding(
-            padding: const EdgeInsets.all( 15),
-            child:  Row(
-              children: [
-                Text(title,
+        Padding(
+          padding: const EdgeInsets.all( 15),
+          child:  Row(
+            textDirection: TextDirection.rtl,
+            children: [
+              Text('${title} :' ,
+                style: const TextStyle(
+                    color: Colors.black26,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600
+                ),
+                textDirection: TextDirection.rtl,
+              ),
+               const Spacer(
+                 flex: 1,
+               ),
+               Expanded(
+                child: Text(value,
+                  textAlign: TextAlign.end,
                   style: const TextStyle(
-                      color: Colors.black26,
+                      color: Colors.black,
                       fontSize: 18,
-                      fontWeight: FontWeight.w600
+                      fontWeight: FontWeight.w400
                   ),
+                  textDirection: TextDirection.rtl,
+
                 ),
-                 Expanded(
-                  child: Text(value,
-                    textAlign: TextAlign.end,
-                    style: const TextStyle(
-                        color: Colors.black,
-                        fontSize: 18,
-                        fontWeight: FontWeight.w400
-                    ),
-                  ),
-                ),
-                 const Icon(Icons.arrow_forward_ios),
-          
-          
-              ],
-            ),
+              ),
+              const SizedBox(
+                 width:10,
+               ),
+
+            ],
           ),
-        ),
-        const Divider(
-          color: Colors.black12,
-          height: 1,
         ),
 
       ],
