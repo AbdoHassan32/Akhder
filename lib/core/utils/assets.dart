@@ -9,4 +9,8 @@ static const paymentfailed = 'assets/images/payment_failed.png';
 static const testProduct2 = 'assets/images/test_product_2.jpg';
 static const testProduct3 = 'assets/images/test_product_3.jpg';
 static const paypalIcon = 'assets/images/paypal.svg';
+static const market_place = 'assets/images/market_place.svg';
+static const irrigation = 'assets/images/irrigation.svg';
+static const detect_disease = 'assets/images/detect_disease.svg';
+
 }

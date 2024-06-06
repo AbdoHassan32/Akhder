@@ -160,7 +160,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                         Align(
                           alignment: Alignment.center,
                           child: Text(
-                            'or continue with',
+                            'أو سجل بإستخدام',
                             style: Styles.textStyle14.copyWith(
                               color: kGreyTextColor,
                             ),
