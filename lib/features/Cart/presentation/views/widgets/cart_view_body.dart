@@ -15,14 +15,14 @@ class CartViewBody extends StatefulWidget {
 }
 
 class _CartViewBodyState extends State<CartViewBody> {
-   late List<String> freq;
+  late List<String> freq;
   final Stream<QuerySnapshot> cart = FirebaseFirestore.instance
       .collection('cart')
       .orderBy('createdAt', descending: false)
       .snapshots();
   final User? user = FirebaseAuth.instance.currentUser;
 
-   @override
+  @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
         stream: cart,
@@ -64,75 +64,75 @@ class _CartViewBodyState extends State<CartViewBody> {
                             itemBuilder: (context, index) {
                               return productList[index].userId == user!.email
                                   ? CartItem(
-                                      product: productList[index],
-                                    )
+                                product: productList[index],
+                              )
                                   : Container();
                             },
                             separatorBuilder: (context, index) => const Divider(
-                                  color: Colors.black26,
-                                  height: 2,
-                                ),
+                              color: Colors.black26,
+                              height: 2,
+                            ),
                             itemCount: productList.length),
                         Padding(
                           padding: const EdgeInsets.all(20.0),
                           child: productList.isEmpty ? ElevatedButton(
-                                  onPressed: () {
-                                  },
-                                  style: ElevatedButton.styleFrom(
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(12.0),
-                                      ),
-                                      backgroundColor: kGreyTextColor),
-                                  child: const Padding(
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: 45.0, vertical: 12.0),
-                                    child: Text(
+                            onPressed: () {
+                            },
+                            style: ElevatedButton.styleFrom(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius:
+                                  BorderRadius.circular(12.0),
+                                ),
+                                backgroundColor: kGreyTextColor),
+                            child: const Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 45.0, vertical: 12.0),
+                              child: Text(
+                                'الذهاب للدفع',
+                                textDirection: TextDirection.rtl,
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.w500),
+                              ),
+                            ),
+                          )
+                              : ElevatedButton(
+                            onPressed: () {
+                              showCheckout();
+                            },
+                            style: ElevatedButton.styleFrom(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius:
+                                  BorderRadius.circular(12.0),
+                                ),
+                                backgroundColor: kPrimaryColor),
+                            child:   Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 45.0, vertical: 12.0),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Text(
                                       'الذهاب للدفع',
-                                     textDirection: TextDirection.rtl,
-                                      style: TextStyle(
+                                      textDirection: TextDirection.rtl,
+                                      style: const TextStyle(
                                           color: Colors.white,
                                           fontSize: 17,
                                           fontWeight: FontWeight.w500),
                                     ),
-                                  ),
+                                    Text(
+                                      ' المجموع : ${total} ج.م',
+                                      textDirection: TextDirection.rtl,
+                                      style: const TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 17,
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                  ],
                                 )
-                              : ElevatedButton(
-                                  onPressed: () {
-                                    showCheckout();
-                                  },
-                                  style: ElevatedButton.styleFrom(
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(12.0),
-                                      ),
-                                      backgroundColor: kPrimaryColor),
-                                  child:   Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 45.0, vertical: 12.0),
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        Text(
-                                          'الذهاب للدفع',
-                                          textDirection: TextDirection.rtl,
-                                          style: const TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 17,
-                                              fontWeight: FontWeight.w500),
-                                        ),
-                                        Text(
-                                          ' المجموع : ${total} ج.م',
-                                          textDirection: TextDirection.rtl,
-                                          style: const TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 17,
-                                              fontWeight: FontWeight.w500),
-                                        ),
-                                      ],
-                                    )
-                                  ),
-                                ),
+                            ),
+                          ),
                         )
                       ],
                     ),

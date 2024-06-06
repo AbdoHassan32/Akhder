@@ -7,7 +7,6 @@ import 'package:go_router/go_router.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:tflite/tflite.dart';
 import 'package:flutter/services.dart';
-
 import '../../../../../core/utils/styles.dart';
 import '../../../../../core/widgets/background_image_widget.dart';
 

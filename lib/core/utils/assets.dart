@@ -8,5 +8,6 @@ static const paymentsuccess = 'assets/images/payment_success.png.png';
 static const paymentfailed = 'assets/images/payment_failed.png';
 static const testProduct2 = 'assets/images/test_product_2.jpg';
 static const testProduct3 = 'assets/images/test_product_3.jpg';
+static const irregation = 'assets/images/irregation.jpg';
 
 }

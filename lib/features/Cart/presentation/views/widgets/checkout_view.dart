@@ -34,13 +34,13 @@ class CheckoutviewState extends State<Checkoutview> {
                     size: 30,
                   ),
                 ),
-                const Text(
+               /* const Text(
                   "التحقق من الدفع",
                   style: TextStyle(
                       color: Colors.black,
                       fontSize: 20,
                       fontWeight: FontWeight.bold),
-                ),
+                ),*/
               ],
             ),
           ),
@@ -88,6 +88,7 @@ class CheckoutviewState extends State<Checkoutview> {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Padding(
+               
                 padding: const EdgeInsets.only(right: 5, bottom: 15, top: 8),
                 child: SizedBox(
                   width: MediaQuery.of(context).size.width*0.8,

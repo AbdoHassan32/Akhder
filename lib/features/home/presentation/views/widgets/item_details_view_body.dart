@@ -8,6 +8,7 @@ import 'package:akhder/features/Details-screen/presentation/views/widgets/favour
 import 'package:akhder/features/Details-screen/presentation/views/widgets/item_product_page_view.dart';
 import 'package:akhder/features/Details-screen/presentation/views/widgets/rating_bar.dart';
 import 'package:go_router/go_router.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import '../../../../../palette.dart';
 import '../../../data/models/product.dart';
@@ -130,6 +131,36 @@ class _ItemDetailsViewBodyState extends State<ItemDetailsViewBody> {
           ),
 
            AddToCartButton(product: widget.product),
+          TextButton(
+            onPressed: () {
+              Fluttertoast.showToast(
+                msg: 'تم أضافة المنتج إلي العربة',
+                toastLength: Toast.LENGTH_SHORT,
+                gravity: ToastGravity.BOTTOM,
+                timeInSecForIosWeb: 1,
+                backgroundColor: Colors.black,
+                textColor: Colors.white,
+               fontSize: 20,
+              );
+            },
+            child: Container(
+              padding: const EdgeInsets.all(5),
+              decoration: BoxDecoration(
+                color: Colors.green,
+                borderRadius: BorderRadius.circular(16),
+              ),
+              height: 50,
+              width: 250,
+              child: Center(
+                child: Text(
+                  'أضف للعربة',
+                  style: Styles.textStyle20.copyWith(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );
