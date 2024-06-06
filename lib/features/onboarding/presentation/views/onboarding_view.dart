@@ -31,25 +31,29 @@ class _OnboardingViewState extends State<OnboardingView> {
         child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Stack(
+            textDirection: TextDirection.rtl,
             children: [
-              PageView(
-                onPageChanged: (index){
-                  if(index == 2){
-                    isLastPage = true;
-                    setState(() {
-                    });
-                  }else{
-                    isLastPage = false;
-                    setState(() {
-                    });
-                  }
-                },
-                controller: controller,
-                children:  const[
-                  OnboardingViewStart(),
-                  OnboardingViewOne(),
-                  OnboardingViewEnd(),
-                ],
+              Directionality(
+                textDirection: TextDirection.rtl,
+                child: PageView(
+                  onPageChanged: (index){
+                    if(index == 2){
+                      isLastPage = true;
+                      setState(() {
+                      });
+                    }else{
+                      isLastPage = false;
+                      setState(() {
+                      });
+                    }
+                  },
+                  controller: controller,
+                  children:  const[
+                    OnboardingViewStart(),
+                    OnboardingViewOne(),
+                    OnboardingViewEnd(),
+                  ],
+                ),
               ),
               Align(
                 alignment: Alignment.bottomCenter,
@@ -58,6 +62,7 @@ class _OnboardingViewState extends State<OnboardingView> {
                     bottom: 10,
                   ),
                   child: SmoothPageIndicator(
+                    textDirection: TextDirection.rtl,
                     controller: controller,
                     count: 3,
                     effect:  WormEffect(
@@ -71,13 +76,13 @@ class _OnboardingViewState extends State<OnboardingView> {
               ),
               isLastPage == false ?
               Align(
-                alignment: Alignment.bottomRight,
+                alignment: Alignment.bottomLeft,
                 child: SizedBox(
                   width: MediaQuery.of(context).size.width*0.23,
                   height: MediaQuery.of(context).size.height*0.04,
                   child: CustomButtonWidget(
                       buttonColor: kPrimaryColor,
-                      label: 'Next',
+                      label: 'التالي',
                       onPressed: (){
                         controller.nextPage(duration: const Duration(milliseconds: 500), curve: Curves.easeIn);
                       }
@@ -85,13 +90,13 @@ class _OnboardingViewState extends State<OnboardingView> {
                 ),
               ):
               Align(
-                alignment: Alignment.bottomRight,
+                alignment: Alignment.bottomLeft,
                 child: SizedBox(
                   width: MediaQuery.of(context).size.width*0.23,
                   height: MediaQuery.of(context).size.height*0.04,
                   child: CustomButtonWidget(
                       buttonColor: kPrimaryColor,
-                      label: 'Done',
+                      label: 'انتهى',
                       onPressed: () async {
                         final SharedPreferences prefs =await SharedPreferences.getInstance();
                         prefs.setBool('isFirstTime', false);
@@ -102,13 +107,13 @@ class _OnboardingViewState extends State<OnboardingView> {
               ),
               isLastPage == false ?
               Align(
-                alignment: Alignment.bottomLeft,
+                alignment: Alignment.bottomRight,
                 child: SizedBox(
                   width: MediaQuery.of(context).size.width*0.23,
                   height: MediaQuery.of(context).size.height*0.04,
                   child: CustomButtonWidget(
                       buttonColor: kPrimaryColor,
-                      label: 'Skip',
+                      label: 'تخطي',
                       onPressed: (){
                         controller.jumpToPage(2);
                       }
@@ -116,13 +121,13 @@ class _OnboardingViewState extends State<OnboardingView> {
                 ),
               ):
               Align(
-                alignment: Alignment.bottomLeft,
+                alignment: Alignment.bottomRight,
                 child: SizedBox(
                   width: MediaQuery.of(context).size.width*0.23,
                   height: MediaQuery.of(context).size.height*0.04,
                   child: CustomButtonWidget(
                       buttonColor: kPrimaryColor,
-                      label: 'Back',
+                      label: 'السابق',
                       onPressed: (){
                         controller.previousPage(duration: const Duration(milliseconds: 500), curve: Curves.easeIn);
                       }
