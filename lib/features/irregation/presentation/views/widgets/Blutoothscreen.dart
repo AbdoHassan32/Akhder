@@ -96,7 +96,6 @@ class _BluetoothScreenState extends State<BluetoothScreen> {
       }
 
 
-
       List<BluetoothDevice> devices =
       await FlutterBluetoothSerial.instance.getBondedDevices();
       print(results.length);
