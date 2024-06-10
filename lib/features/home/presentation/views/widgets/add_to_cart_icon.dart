@@ -1,8 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
-import '../../../../auth/presentation/views/widgets/login_view_body.dart';
+import '../../../../../palette.dart';
 import '../../../data/models/product.dart';
 
 class AddToCartIcon extends StatelessWidget {
@@ -31,13 +32,14 @@ class AddToCartIcon extends StatelessWidget {
             'weight': product.weight,
             'stockNum': product.stockNum,
             'kgOrL': product.kgOrL,
-            'price': product.price! + product.price!,
+            'price': product.price! * product.itemCount!,
             'createdAt': DateTime.now(),
             'userId': product.userId,
             'id': product.id,
             'category': null,
             'isFav': product.isFav,
             'docId': product.docId,
+            'favDocId':product.favDocId,
             'itemCount': product.itemCount,
             'itemCountInFirebase': product.itemCount,
           }).then((DocumentReference doc) {
@@ -47,16 +49,25 @@ class AddToCartIcon extends StatelessWidget {
             });
           });
 
-          showSnackBar(
-            context,
-            'Added to Cart !',
-            color: Colors.green,
+          Fluttertoast.showToast(
+            msg: 'تم إضافة المنتج إلي العربة !',
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.TOP,
+            timeInSecForIosWeb: 1,
+            backgroundColor: kSecondaryColor,
+            textColor: Colors.white,
+            fontSize: 20,
           );
+
         } else {
-          showSnackBar(
-            context,
-            'Increased 1 more item !',
-            color: Colors.redAccent,
+          Fluttertoast.showToast(
+            msg: 'تم زيادة المنتج في العربة',
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.TOP,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.deepOrangeAccent,
+            textColor: Colors.white,
+            fontSize: 18,
           );
 
           await FirebaseFirestore.instance
@@ -70,6 +81,7 @@ class AddToCartIcon extends StatelessWidget {
 
           product.itemCountInFirebase =
               product.itemCountInFirebase! + product.itemCount!;
+
         }
       },
       icon: const Icon(

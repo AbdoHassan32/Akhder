@@ -13,6 +13,7 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+  final PageController controller = PageController();
   int selectedItemIndex = 0;
   List<Widget> body = [
     const HomeViewBody(),
@@ -26,26 +27,30 @@ class _HomeViewState extends State<HomeView> {
       endDrawer: NavigationDrawerWidget(),
       bottomNavigationBar: SizedBox(
         height: 70,
-        child: BottomNavigationBar(
-          items: const [
-            BottomNavigationBarItem(
-                icon: Icon(Icons.home_rounded), label: 'الصفحة الرئيسية'),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.shopping_cart_rounded), label: 'العربة'),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.favorite), label: 'المفضلة'),
-          ],
-          onTap: (index) {
-            selectedItemIndex = index;
-            setState(() {
-              if (selectedItemIndex == 0) {}
-            });
-          },
-          selectedFontSize: 14,
-          elevation: 10,
-          iconSize: 25,
-          currentIndex: selectedItemIndex,
-          selectedItemColor: kPrimaryColor,
+        child: Directionality(
+          textDirection: TextDirection.rtl,
+          child: BottomNavigationBar(
+            items: const [
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.home_rounded), label: 'الصفحة الرئيسية'),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.shopping_cart_rounded), label: 'العربة'),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.favorite), label: 'المفضلة'),
+            ],
+            onTap: (index) {
+              selectedItemIndex = index;
+              setState(() {
+                if (selectedItemIndex == 0) {}
+              });
+            },
+            selectedFontSize: 14,
+            elevation: 10,
+            iconSize: 25,
+            currentIndex: selectedItemIndex,
+            selectedItemColor: kPrimaryColor,
+
+          ),
         ),
       ),
       body: SafeArea(child: body[selectedItemIndex]),

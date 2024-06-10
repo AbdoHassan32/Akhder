@@ -41,9 +41,7 @@ class _ItemDetailsViewBodyState extends State<ItemDetailsViewBody> {
                     onPressed: () {
                       GoRouter.of(context).pop();
                     },
-                    icon: const Icon(Icons.arrow_back_ios)),
-                const Icon(Icons.upload_rounded),
-              ],
+                    icon: const Icon(Icons.arrow_back_ios)),],
             ),
           ),
           ItemPicturePageView(

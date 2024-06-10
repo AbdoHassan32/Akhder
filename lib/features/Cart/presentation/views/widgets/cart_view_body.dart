@@ -58,7 +58,7 @@ class _CartViewBodyState extends State<CartViewBody> {
                               left: 20,
                               top: 10,
                               right: 20,
-                              bottom: 50,
+                              bottom: 80,
                             ),
                             physics: const BouncingScrollPhysics(),
                             itemBuilder: (context, index) {
@@ -129,7 +129,7 @@ class _CartViewBodyState extends State<CartViewBody> {
                                                 fontWeight: FontWeight.w500),
                                           ),
                                           Text(
-                                            ' المجموع : ${total} ج.م',
+                                            ' المجموع : ${total.toInt()} ج.م',
                                             textDirection: TextDirection.rtl,
                                             style: const TextStyle(
                                                 color: Colors.white,
@@ -202,6 +202,7 @@ class _CartViewBodyState extends State<CartViewBody> {
   }
 
   void showCheckout() {
+
     showModalBottomSheet(
         backgroundColor: Colors.transparent,
         isDismissible: false,

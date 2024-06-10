@@ -2,9 +2,9 @@ import 'package:akhder/palette.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import '../../../../../core/widgets/custom_button_widget.dart';
-import '../../../../auth/presentation/views/widgets/login_view_body.dart';
 import '../../../data/models/product.dart';
 
 class AddToCartButton extends StatelessWidget {
@@ -40,6 +40,7 @@ class AddToCartButton extends StatelessWidget {
             'category': null,
             'isFav': product.isFav,
             'docId': product.docId,
+            'favDocId':product.favDocId,
             'itemCount': product.itemCount,
             'itemCountInFirebase': product.itemCount,
           }).then((DocumentReference doc) {
@@ -48,17 +49,25 @@ class AddToCartButton extends StatelessWidget {
               'docId': product.docId,
             });
           });
-
-          showSnackBar(
-            context,
-            'Added to Cart !',
-            color: Colors.green,
+          Fluttertoast.showToast(
+            msg: 'تم إضافة المنتج إلي العربة !',
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.TOP,
+            timeInSecForIosWeb: 1,
+            backgroundColor: kSecondaryColor,
+            textColor: Colors.white,
+            fontSize: 20,
           );
+
         } else {
-          showSnackBar(
-            context,
-            'Increased 1 more item !',
-            color: Colors.redAccent,
+          Fluttertoast.showToast(
+            msg: 'تم زيادة المنتج في العربة !',
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.TOP,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.deepOrangeAccent,
+            textColor: Colors.white,
+            fontSize: 18,
           );
 
           await FirebaseFirestore.instance

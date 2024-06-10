@@ -12,6 +12,7 @@ class Product {
     this.isFav,
     this.userId,
     this.docId,
+    this.favDocId,
     this.itemCount,
   this.itemCountInFirebase
   });
@@ -29,6 +30,7 @@ class Product {
         json['category'] != null ? Category.fromJson(json['category']) : null;
     isFav = json['isFav'];
     docId = json['docId'];
+    favDocId = json['favDocId'];
     userId = json['userId'];
     itemCount = json['itemCount'];
     itemCountInFirebase = json['itemCountInFirebase'];
@@ -44,6 +46,7 @@ class Product {
   Category? category;
   bool? isFav = false;
   String? docId = '';
+  String? favDocId='';
   String? userId;
   int? itemCount = 1;
   int? itemCountInFirebase = 0;
@@ -59,6 +62,7 @@ class Product {
     Category? category,
     bool? isFav = false,
     String? docId = '',
+    String? favDocId = '',
     String? userId,
     int? itemCount = 1,
     int? itemCountInFirebase = 0,
@@ -75,6 +79,7 @@ class Product {
         category: category ?? this.category,
         isFav: isFav ?? this.isFav,
         docId: docId ?? this.docId,
+        favDocId: favDocId ?? this.favDocId,
         userId: userId ?? this.userId,
         itemCount: itemCount ?? this.itemCount,
         itemCountInFirebase: itemCountInFirebase ?? this.itemCountInFirebase,
@@ -91,6 +96,7 @@ class Product {
     map['imageUrl'] = imageUrl;
     map['userId'] = userId;
     map['docId'] = docId;
+    map['favDocId'] = favDocId;
     map['isFav'] = isFav;
     map['itemCoun']=itemCount;
     map['itemCountInFirebase']=itemCountInFirebase;

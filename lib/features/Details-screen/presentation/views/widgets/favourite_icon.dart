@@ -1,8 +1,9 @@
-import 'package:akhder/features/auth/presentation/views/widgets/login_view_body.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
+import '../../../../../palette.dart';
 import '../../../../home/data/models/product.dart';
 
 class FavoriteButton extends StatefulWidget {
@@ -27,7 +28,7 @@ class _FavoriteButtonState extends State<FavoriteButton> {
         ),
         onPressed: () async {
 
-          if ((widget.product.isFav == false && widget.product.docId == '')||(widget.product.isFav == null && widget.product.docId == null)) {
+          if ((widget.product.isFav == false && widget.product.favDocId == '')||(widget.product.isFav == null && widget.product.favDocId == null)) {
             widget.product.isFav = true;
             widget.product.userId = user!.email;
             print(user!.email);
@@ -47,20 +48,25 @@ class _FavoriteButtonState extends State<FavoriteButton> {
               'category' : null,
               'isFav':widget.product.isFav,
               'docId':widget.product.docId,
+              'favDocId':widget.product.favDocId,
               'itemCount': null,
               'itemCountInFirebase':null ,
             }
             ).then((DocumentReference doc) {
-              widget.product.docId = doc.id;
-              favorites.doc(widget.product.docId).update({
-                'docId': widget.product.docId,
+              widget.product.favDocId = doc.id;
+              favorites.doc(widget.product.favDocId).update({
+                'favDocId': widget.product.favDocId,
               });
             });
 
-            showSnackBar(
-              context,
-              'Added to Favorites !',
-              color: Colors.green,
+            Fluttertoast.showToast(
+              msg: 'تم إضافة المنتج إلي المفضلة !',
+              toastLength: Toast.LENGTH_SHORT,
+              gravity: ToastGravity.TOP,
+              timeInSecForIosWeb: 1,
+              backgroundColor: kSecondaryColor,
+              textColor: Colors.white,
+              fontSize: 20,
             );
             setState(() {
 
@@ -71,19 +77,23 @@ class _FavoriteButtonState extends State<FavoriteButton> {
             setState(() {
 
             });
-            showSnackBar(
-              context,
-              'Removed from Favorites !',
-              color: Colors.redAccent,
+            Fluttertoast.showToast(
+              msg: 'تم حذف المنتج من المفضلة !',
+              toastLength: Toast.LENGTH_SHORT,
+              gravity: ToastGravity.TOP,
+              timeInSecForIosWeb: 1,
+              backgroundColor: Colors.redAccent,
+              textColor: Colors.white,
+              fontSize: 20,
             );
 
             await FirebaseFirestore.instance
                 .runTransaction((Transaction myTransaction) async {
-                  print('doc id is ${widget.product.docId}');
-              myTransaction.delete(favorites.doc(widget.product.docId));
+                  print('doc id is ${widget.product.favDocId}');
+              myTransaction.delete(favorites.doc(widget.product.favDocId));
             });
             widget.product.isFav = false;
-            widget.product.docId = '';
+            widget.product.favDocId = '';
             widget.product.userId='';
           }
           setState(()  {

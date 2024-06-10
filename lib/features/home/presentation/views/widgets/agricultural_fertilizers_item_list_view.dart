@@ -7,8 +7,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'custom_item_widget.dart';
 
 class AgriculturalFertilizersItemListView extends StatelessWidget {
-  const AgriculturalFertilizersItemListView({Key? key}) : super(key: key);
-
+  const AgriculturalFertilizersItemListView({Key? key,  this.scrollDirection= Axis.horizontal, this.topPadding=0, this.bottomPadding=0}) : super(key: key);
+  final Axis scrollDirection;
+  final double topPadding;
+  final double bottomPadding;
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AgriculturalFertilizersCubit, AgriculturalFertilizersState>(
@@ -21,13 +23,15 @@ class AgriculturalFertilizersItemListView extends StatelessWidget {
             textDirection: TextDirection.rtl,
             child: ListView.builder(
               physics: const BouncingScrollPhysics(),
-              scrollDirection: Axis.horizontal,
+              scrollDirection: scrollDirection,
               padding: const EdgeInsets.symmetric(horizontal: 15),
               itemCount: state.products.length,
               itemBuilder: (context, index) =>  Padding(
-                padding: const EdgeInsets.only(
+                padding:  EdgeInsets.only(
                   right: 10,
                   left: 10,
+                  top: topPadding,
+                  bottom: bottomPadding,
                 ),
                 child: CustomItemWidget(product: state.products[index],),
               ),

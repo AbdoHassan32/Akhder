@@ -30,7 +30,7 @@ class FavoriteItem extends StatelessWidget {
                 imageUrl: favProduct.imageUrl!,
                 fit: BoxFit.fill,
                 height: MediaQuery.of(context).size.height*0.1,
-
+                width: MediaQuery.of(context).size.width*0.2,
               ),
             ),
             Padding(
@@ -39,10 +39,15 @@ class FavoriteItem extends StatelessWidget {
                 textDirection: TextDirection.rtl,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(favProduct.name!,
-                    textDirection: TextDirection.rtl,
-                    style: Styles.textStyle18.copyWith(
-                      fontWeight: FontWeight.bold,
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width*0.4,
+                    child: Text(favProduct.name!,
+                      textDirection: TextDirection.rtl,
+                      style: Styles.textStyle18.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
                     ),
                   ),
                    Text(favProduct.kgOrL! ? '${favProduct.weight!} كجم ' : '${favProduct.weight!} لتر ',

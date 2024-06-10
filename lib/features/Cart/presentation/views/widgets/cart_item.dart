@@ -40,7 +40,7 @@ final Product product;
                   Padding(
                     padding: const EdgeInsets.only(right: 12),
                     child: SizedBox(
-                      width: MediaQuery.of(context).size.width*0.45,
+                      width: MediaQuery.of(context).size.width*0.44,
                       child: Text(
                       product.name!,
                         textDirection:TextDirection.rtl,
@@ -61,12 +61,9 @@ final Product product;
                       ),
                     ),
                   const Spacer(
-                    flex: 2,
-                  ),
-                  ItemCount(product: product,),
-                  const Spacer(
                     flex: 1,
                   ),
+                  ItemCount(product: product,),
                   const Spacer(
                     flex: 1,
                   ),
@@ -95,7 +92,7 @@ final Product product;
                 const Spacer(
                   flex: 1,
                 ),
-                Text('${product.price!*product.itemCount!} ج.م',
+                Text('${(product.price!*product.itemCount!).toInt()} ج.م',
                     textDirection: TextDirection.rtl,
                     style: Styles.textStyle18),
                 const Spacer(

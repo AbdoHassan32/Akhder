@@ -1,7 +1,10 @@
+import 'package:akhder/core/utils/app_router.dart';
 import 'package:akhder/core/utils/assets.dart';
+import 'package:akhder/features/home/data/models/product.dart';
 import 'package:akhder/features/home/presentation/views/widgets/corps_item_list_view.dart';
 import 'package:akhder/features/home/presentation/views/widgets/custom_category_title_widget.dart';
 import 'package:akhder/features/home/presentation/views/widgets/agricultural_fertilizers_item_list_view.dart';
+import 'package:akhder/features/home/presentation/views/widgets/custom_search_delegate.dart';
 import 'package:akhder/features/home/presentation/views/widgets/insecticides_item_list_view.dart';
 import 'package:akhder/features/home/presentation/views/widgets/seeds_item_list_view.dart';
 import 'package:akhder/features/home/presentation/views/widgets/tools_item_list_view.dart';
@@ -9,6 +12,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 
 class HomeViewBody extends StatelessWidget {
   const HomeViewBody({
@@ -38,20 +42,31 @@ class HomeViewBody extends StatelessWidget {
                       icon: const Icon(
                         FontAwesomeIcons.bars,
                       )),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.21,
+                  const Spacer(
+                    flex: 1,
                   ),
                   Image.asset(
                     AssetsData.logoPetrol,
                     height: MediaQuery.of(context).size.height * 0.07,
                   ),
+                  const Spacer(
+                    flex: 1,
+                  ),
+                  IconButton(
+                      onPressed: () {
+                        showSearch<Product>(context: context, delegate: CustomSearchDelegate());
+                      },
+                      icon: const Icon(
+                        Icons.search,
+                      )),
                 ],
               ),
             ),
             const SizedBox(
               height: 30,
             ),
-            Padding(
+
+         /*   Padding(
               padding: const EdgeInsets.symmetric(
                 horizontal: 25,
               ),
@@ -83,8 +98,13 @@ class HomeViewBody extends StatelessWidget {
                 ),
               ),
             ),
+          */
+
             CustomCategoryTitleWidget(
-                categoryTitle: 'أسمدة زراعية', onPressed: () {}),
+                categoryTitle: 'أسمدة زراعية', onPressed: () {
+              GoRouter.of(context).push(AppRouter.kFertilizersItemView);
+
+            }),
             const SizedBox(
               height: 20,
             ),
@@ -93,7 +113,10 @@ class HomeViewBody extends StatelessWidget {
               height: 15,
             ),
             CustomCategoryTitleWidget(
-                categoryTitle: 'مبيدات حشرية', onPressed: () {}),
+                categoryTitle: 'مبيدات حشرية', onPressed: () {
+              GoRouter.of(context).push(AppRouter.kInsecticidesItemView);
+
+            }),
             const SizedBox(
               height: 20,
             ),
@@ -102,7 +125,9 @@ class HomeViewBody extends StatelessWidget {
               height: 15,
             ),
             CustomCategoryTitleWidget(
-                categoryTitle: 'معدات زراعية', onPressed: () {}),
+                categoryTitle: 'معدات زراعية', onPressed: () {
+                  GoRouter.of(context).push(AppRouter.kToolsItemView);
+            }),
             const SizedBox(
               height: 20,
             ),
@@ -111,7 +136,10 @@ class HomeViewBody extends StatelessWidget {
               height: 20,
             ),
             CustomCategoryTitleWidget(
-                categoryTitle: 'محاصيل زراعية', onPressed: () {}),
+                categoryTitle: 'محاصيل زراعية', onPressed: () {
+              GoRouter.of(context).push(AppRouter.kCorpsItemView);
+
+            }),
             const SizedBox(
               height: 20,
             ),
@@ -120,7 +148,10 @@ class HomeViewBody extends StatelessWidget {
               height: 20,
             ),
             CustomCategoryTitleWidget(
-                categoryTitle: 'بذور', onPressed: () {}),
+                categoryTitle: 'بذور', onPressed: () {
+              GoRouter.of(context).push(AppRouter.kSeedsItemView);
+
+            }),
             const SizedBox(
               height: 20,
             ),

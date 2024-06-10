@@ -7,8 +7,10 @@ import '../../../../../core/widgets/custom_loading_indicator.dart';
 import 'custom_item_widget.dart';
 
 class CorpsItemListView extends StatelessWidget {
-  const CorpsItemListView({Key? key}) : super(key: key);
-
+  const CorpsItemListView({Key? key,  this.scrollDirection= Axis.horizontal, this.topPadding=0, this.bottomPadding=0}) : super(key: key);
+  final Axis scrollDirection;
+  final double topPadding;
+  final double bottomPadding;
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<CorpsProductsCubit, CorpsProductsState>(
@@ -21,13 +23,15 @@ class CorpsItemListView extends StatelessWidget {
               textDirection: TextDirection.rtl,
               child: ListView.builder(
                 physics: const BouncingScrollPhysics(),
-                scrollDirection: Axis.horizontal,
+                scrollDirection:scrollDirection,
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 itemCount: state.products.length,
                 itemBuilder: (context, index) =>  Padding(
-                  padding: const EdgeInsets.only(
+                  padding:  EdgeInsets.only(
                     right: 10,
                     left: 10,
+                    top: topPadding,
+                    bottom: bottomPadding,
                   ),
                   child: CustomItemWidget(product: state.products[index],),
                 ),

@@ -5,8 +5,10 @@ import 'package:akhder/features/Cart/presentation/views/widgets/checkout_list.da
 import 'package:akhder/features/Cart/presentation/views/widgets/payment_methods_list_view.dart';
 import 'package:akhder/features/Cart/presentation/views/widgets/paypal_checkout_view.dart';
 import 'package:akhder/palette.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import '../../../../../core/utils/api_keys.dart';
+import '../../../../../core/utils/assets.dart';
 import '../../../data/models/amount.dart';
 import '../../../data/models/details.dart';
 class PaymentMethodsBottomSheet extends StatelessWidget {
@@ -97,15 +99,198 @@ final double total;
         note: "Contact us for any questions on your order.",
         onSuccess: (Map params) async {
           log("onSuccess: $params");
+          var collection = FirebaseFirestore.instance.collection('cart');
+          var snapshots = await collection.get();
+          for (var doc in snapshots.docs) {
+            await doc.reference.delete();
+          }
+
           Navigator.pop(context);
+          Navigator.pop(context);
+          showDialog(
+            context: context,
+            builder: (context) {
+              return Container(
+                height: MediaQuery.of(context).size.height*0.2,
+                child: Dialog(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(40)),
+                  elevation: 16,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children:[
+                      Align(
+                        alignment: Alignment.topLeft,
+                        child: Padding(
+                          padding: const EdgeInsets.all(30.0),
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.pop(context);
+                            },
+                            child: const Icon(
+                              Icons.close,
+                              size: 30,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 30),
+                        child: Container(
+                          child: Image.asset(
+                            AssetsData.paymentsuccess,
+                            height:MediaQuery.of(context).size.height*0.3 ,
+                            width: MediaQuery.of(context).size.width*0.6,
+                          ),
+                        ),
+                      ),
+                      const Padding(
+                        padding: const EdgeInsets.all(50),
+                        child: Text('! تم قبول الطلب بنجاح',style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold),),
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width*0.5,
+                        child: CustomButtonWidget(buttonColor: kPrimaryColor, label: 'استمرار', onPressed:(){
+                          Navigator.pop(context);
+                        }),
+                      ),
+
+                      SizedBox(
+                        height: 30,
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            },
+          );
         },
         onError: (error) {
           log("onError: $error");
           Navigator.pop(context);
+          Navigator.pop(context);
+          showDialog(
+            context: context,
+            builder: (context) {
+              return Container(
+                height: MediaQuery.of(context).size.height*0.2,
+                child: Dialog(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(40)),
+                  elevation: 16,
+                  child: Column(
+                    crossAxisAlignment : CrossAxisAlignment.center,
+                    textDirection: TextDirection.rtl,
+                    mainAxisSize: MainAxisSize.min,
+                    children:[
+                      Align(
+                        alignment: Alignment.topLeft,
+                        child: Padding(
+                          padding: const EdgeInsets.all(20.0),
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.pop(context);
+                            },
+                            child: const Icon(
+                              Icons.close,
+                              size: 30,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 30),
+                        child: Container(
+                          child: Image.asset(
+                            AssetsData.paymentfailed,
+                            height:MediaQuery.of(context).size.height*0.3 ,
+                            width: MediaQuery.of(context).size.width*0.6,
+                          ),
+                        ),
+                      ),
+                      const Padding(
+                        padding: const EdgeInsets.all(50),
+                        child: Text('! عذرا لقد فشلت العملية',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width*0.5,
+                        child: CustomButtonWidget(buttonColor: kPrimaryColor, label: 'حاول مرة اخرى', onPressed:(){
+                          Navigator.pop(context);
+                        }),
+                      ),
+
+                      SizedBox(
+                        height: 20,
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            },
+          );
         },
         onCancel: () {
-          print('cancelled:');
           Navigator.pop(context);
+          Navigator.pop(context);
+          showDialog(
+            context: context,
+            builder: (context) {
+              return Container(
+                height: MediaQuery.of(context).size.height*0.2,
+                child: Dialog(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(40)),
+                  elevation: 16,
+                  child: Column(
+                    crossAxisAlignment : CrossAxisAlignment.center,
+
+                    mainAxisSize: MainAxisSize.min,
+                    children:[
+                      Align(
+                        alignment: Alignment.topLeft,
+                        child: Padding(
+                          padding: const EdgeInsets.all(20.0),
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.pop(context);
+                            },
+                            child: const Icon(
+                              Icons.close,
+                              size: 30,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 30),
+                        child: Container(
+                          child: Image.asset(
+                            AssetsData.paymentfailed,
+                            height:MediaQuery.of(context).size.height*0.3 ,
+                            width: MediaQuery.of(context).size.width*0.6,
+                          ),
+                        ),
+                      ),
+                      const Padding(
+                        padding: const EdgeInsets.all(50),
+                        child: Text('! عذرا لقد فشلت العملية',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width*0.5,
+                        child: CustomButtonWidget(buttonColor: kPrimaryColor, label: 'حاول مرة اخرى', onPressed:(){
+                          Navigator.pop(context);
+                        }),
+                      ),
+
+                      SizedBox(
+                        height: 20,
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            },
+          );
         },
       ),
     ));
