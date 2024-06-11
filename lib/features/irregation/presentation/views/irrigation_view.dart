@@ -6,8 +6,9 @@ class IrrigationView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: SafeArea(child: IrrigationViewBody()),
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: const SafeArea(child: IrrigationViewBody()),
     );
   }
 }

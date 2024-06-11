@@ -110,4 +110,25 @@ class HomeRepoImplement implements HomeRepo{
 
 
   }
+
+
+  @override
+  Future< Either< Failure, List<Product> > > fetchAllProducts() async {
+    var data = await apiService.get(query: 'all');
+    List<Product> products = [];
+
+    print(data);
+    for (var item in data) {
+      try {
+
+        products.add(Product.fromJson(item));
+      } catch (e) {
+        products.add(Product.fromJson(item));
+      }
+    }
+
+    return right(products);
+
+
+  }
 }

@@ -1,5 +1,5 @@
 import 'package:akhder/features/home/data/models/product.dart';
-import 'package:akhder/features/home/presentation/views/widgets/seeds_item_list_view.dart';
+import 'package:akhder/features/home/presentation/views/widgets/all_products_list_view.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -98,7 +98,7 @@ class CustomSearchDelegate extends SearchDelegate<Product>{
         children: [
           Expanded(child: SizedBox(
               width: MediaQuery.of(context).size.width*0.6,
-              child: SeedsItemListView(scrollDirection: Axis.vertical,bottomPadding: 10,topPadding: 10,query: query,))),
+              child: AllItemListView(scrollDirection: Axis.vertical,bottomPadding: 10,topPadding: 10,query: query,))),
         ],
       ),
     ): const SizedBox();
@@ -114,7 +114,7 @@ class CustomSearchDelegate extends SearchDelegate<Product>{
         children: [
           Expanded(child: SizedBox(
               width: MediaQuery.of(context).size.width*0.6,
-              child: SeedsItemListView(scrollDirection: Axis.vertical,bottomPadding: 10,topPadding: 10,query: query,))),
+              child: AllItemListView(scrollDirection: Axis.vertical,bottomPadding: 10,topPadding: 10,query: query,))),
         ],
       ),
     ): const SizedBox();

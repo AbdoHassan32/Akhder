@@ -21,6 +21,7 @@ final Product product;
         height: MediaQuery.of(context).size.height * 0.32,
         width: MediaQuery.of(context).size.width * 0.47,
         decoration: BoxDecoration(
+          color: Colors.white,
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
             color: Colors.grey.withOpacity(0.3),

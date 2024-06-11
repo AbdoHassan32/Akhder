@@ -12,5 +12,6 @@ static const paypalIcon = 'assets/images/paypal.svg';
 static const market_place = 'assets/images/market_place.svg';
 static const irrigation = 'assets/images/irrigation.svg';
 static const detect_disease = 'assets/images/detect_disease.svg';
+static const plant = 'assets/images/plant.jpg';
 
 }

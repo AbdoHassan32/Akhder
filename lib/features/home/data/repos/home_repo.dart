@@ -15,5 +15,6 @@ Future< Either < Failure, List<Product>> >fetchSeedsProducts();
 
 Future< Either < Failure, List<Product>> >fetchCorpsProducts();
 
+Future< Either < Failure, List<Product>> >fetchAllProducts();
 
 }

@@ -45,6 +45,7 @@ dependencies:
   tflite: ^1.1.2
   dio: ^4.0.6
   dio_http_cache: ^0.3.0
+  flutter_bluetooth_serial: ^0.4.0
   cloud_firestore: ^4.8.4
   dartz: ^0.10.1
   get_it: ^7.6.0

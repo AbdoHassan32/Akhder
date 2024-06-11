@@ -1,6 +1,7 @@
 import 'package:akhder/core/utils/service_locator.dart';
 import 'package:akhder/features/home/data/repos/home_repo_impl.dart';
 import 'package:akhder/features/home/presentation/manager/agricultural_fertilizers_cubit/agricultural_fertilizers_cubit.dart';
+import 'package:akhder/features/home/presentation/manager/all_products/all_products_cubit.dart';
 import 'package:akhder/features/home/presentation/manager/insecticides_products_cubit/insecticides_products_cubit.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -58,6 +59,11 @@ class MyApp extends StatelessWidget {
           create: (context) => CorpsProductsCubit(
             getIt.get<HomeRepoImplement>(),
           )..fetchCorpsProducts(),
+        ),
+        BlocProvider(
+          create: (context) => AllProductsCubit(
+            getIt.get<HomeRepoImplement>(),
+          )..fetchAllProducts(),
         ),
 
 
