@@ -85,7 +85,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                             inputType: TextInputType.emailAddress,
                             validator: (value) {
                               if (value!.isEmpty) {
-                                return "Email is required";
+                                return "البريد الإلكتروني مطلوب";
                               }
                               else{
                                 return '';
@@ -103,9 +103,9 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                           inputType: TextInputType.visiblePassword,
                           validator: (value) {
                             if (value!.isEmpty) {
-                              return "Password is required";
+                              return "كلمة السر مطلوبة";
                             } else if (value.length < 8) {
-                              return "Password length must be 8 characters or more";
+                              return "كلمة السر يجب أن تكون 8 احرف او اكثر";
                             }
                             else{
                               return '';
@@ -129,7 +129,9 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                             buttonColor: kPrimaryColor,
                             label: 'سجل',
                             onPressed: () {
-
+                                BlocProvider.of<LoginCubit>(context)
+                                    .signInWithEmailAndPassword(
+                                    email: email!, password: password!);
                             }),
                         const SizedBox(
                           height: 25,

@@ -1,4 +1,5 @@
 import 'package:akhder/features/irregation/presentation/views/widgets/irrigation_view_body.dart';
+import 'package:akhder/palette.dart';
 import 'package:flutter/material.dart';
 
 class IrrigationView extends StatelessWidget {
@@ -6,9 +7,9 @@ class IrrigationView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: const SafeArea(child: IrrigationViewBody()),
+    return const Scaffold(
+      backgroundColor: kSplashBackgroundColor,
+      body: SafeArea(child: IrrigationViewBody()),
     );
   }
 }

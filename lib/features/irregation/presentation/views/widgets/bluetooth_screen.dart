@@ -163,7 +163,7 @@ class _BluetoothScreenState extends State<BluetoothScreen> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          'نسبة الرطوبة',
+          'مستوى الرطوبة',
           style: Styles.textStyle20.copyWith(
               color:Colors.white
           ),

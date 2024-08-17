@@ -13,10 +13,18 @@ class LoginCubit extends Cubit<LoginState> {
 
   Future<void> signInWithEmailAndPassword(
       {required String email, required String password}) async {
+    if (userInfo != null) {
+      userInfo!.delete();
+    }
     emit(LoginLoading());
     try {
+
       UserCredential user = await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
+      userInfo = FirebaseAuth.instance.currentUser;
+      final SharedPreferences pref =
+      await SharedPreferences.getInstance();
+      pref.setBool('isLoggedIn', true);
       emit(LoginSuccess());
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {

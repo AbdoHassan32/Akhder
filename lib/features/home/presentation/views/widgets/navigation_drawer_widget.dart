@@ -101,26 +101,7 @@ class NavigationDrawerWidget extends StatelessWidget {
               textColor: Colors.white,
               iconColor: Colors.white,
             ),
-            const Divider(
-              height: 0.5,
-              thickness: 0.5,
-              color: kSecondaryColor,
-            ),
-            ListTile(
-              leading: const Icon(Icons.share_outlined),
-              title: const Text('مشاركة'),
-              onTap: () {},
-            ),
-            const Divider(
-              height: 0.5,
-              thickness: 0.5,
-              color: kSecondaryColor,
-            ),
-            ListTile(
-              leading: const Icon(Icons.notifications_none_outlined),
-              title: const Text('الإشعارات'),
-              onTap: () {},
-            ),
+
             const Divider(
               height: 0.5,
               thickness: 0.5,

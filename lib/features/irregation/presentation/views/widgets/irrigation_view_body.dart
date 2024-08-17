@@ -11,54 +11,60 @@ class IrrigationViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        IconButton(
-          onPressed: () {
-            GoRouter.of(context).pop();
-          },
-          icon: const Icon(Icons.arrow_back_ios_new_rounded),
-        ),
-
-        Align(
-          alignment: Alignment.bottomCenter,
-          child: Container(
-            height: MediaQuery.of(context).size.height*0.6,
-            width: MediaQuery.of(context).size.width,
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage(AssetsData.plant),
-                fit: BoxFit.fill,
-              ),
+    return Padding(
+      padding: const EdgeInsets.only(top: 10),
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 15,top: 10.0),
+            child: Row(
+              children: [
+                IconButton(
+                  onPressed: () {
+                    GoRouter.of(context).pop();
+                  },
+                  icon: const Icon(Icons.arrow_back_ios_new_rounded,
+                  color: Colors.white),
+                ),
+                const Spacer(
+                  flex: 1,
+                ),
+                Text(
+                  'مستوى الرطوبة الخاصة بنباتك',
+                  textDirection: TextDirection.rtl,
+                  style: Styles.textStyle18.copyWith(
+                    color: Colors.white,
+                  ),
+                ),
+                const Spacer(
+                  flex: 2,
+                ),
+              ],
             ),
           ),
-        ),
-        Align(
-          alignment: Alignment.topRight,
-          child: Padding(
-            padding: const EdgeInsets.only(right: 30.0,top: 250),
+          const Spacer(
+            flex: 1,
+          ),
+          Image.asset(AssetsData.logoWhite,
+          height: MediaQuery.of(context).size.height*0.23),
+         const Spacer(
+           flex: 2,
+         ),
+          Center(
             child: Container(
                 decoration: BoxDecoration(
-                  color: kPrimaryColor,
-                  borderRadius: BorderRadius.circular(16),
+                  color: kSecondaryColor,
+                  borderRadius: BorderRadius.circular(13),
                 ),
-                height:MediaQuery.of(context).size.width*0.2,
-                width: MediaQuery.of(context).size.width*0.35,
+                height:MediaQuery.of(context).size.height*0.16,
+                width: MediaQuery.of(context).size.width*0.45,
                 child: BluetoothScreen()),
           ),
-        ),
-        const Align(
-          alignment: Alignment.topCenter,
-          child: Padding(
-            padding:  EdgeInsets.only(top: 12),
-            child: Text(
-              'نسبة الرطوبة الخاصة بنباتك',
-              textDirection: TextDirection.rtl,
-              style: Styles.textStyle18,
-            )
+          const Spacer(
+            flex: 4,
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
