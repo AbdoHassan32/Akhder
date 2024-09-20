@@ -28,3 +28,12 @@ https://www.kaggle.com/datasets/ranaamahmudd22/belll-pepper-diseased
 https://www.kaggle.com/datasets/ranaamahmudd22/potato-diseased
 
 https://www.kaggle.com/datasets/ranaamahmudd22/corn-diseased
+
+# Models
+https://www.kaggle.com/models/ranaamahmudd22/corn_diseased_modeltflite
+
+https://www.kaggle.com/models/ranaamahmudd22/planttype_modeltflite
+
+https://www.kaggle.com/models/ranaamahmudd22/potato_diseased_modeltflite
+
+https://www.kaggle.com/models/ranaamahmudd22/bell_pepper_diseased_modeltflite
