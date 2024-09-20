@@ -22,6 +22,9 @@ https://github.com/user-attachments/assets/57e93f1c-c87b-431e-ac34-1cf88fb079e6
 
 # Dataset links
 https://www.kaggle.com/datasets/ranaamahmudd22/plant-type
+
 https://www.kaggle.com/datasets/ranaamahmudd22/belll-pepper-diseased
+
 https://www.kaggle.com/datasets/ranaamahmudd22/potato-diseased
+
 https://www.kaggle.com/datasets/ranaamahmudd22/corn-diseased
